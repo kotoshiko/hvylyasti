@@ -1,0 +1,31 @@
+// Max width of all header, banners, widgets, etc. It can be wider then page section content.
+$page-max-width: 1280px;
+// Max width of content in page section.
+$content-max-width: 960px;
+
+// Notation of spaces for global usage (padding, margin):
+// $gap-<size> is inner space (e.g. padding), defaults is $gap
+$gap-xl: 30px;
+$gap-lg: 20px;
+$gap: 10px;
+$gap-md: 5px;
+$gap-sm: 2px;
+$gap-xs: 1px;
+
+// Notation of gutter by row and column:
+// $<row|column>-gap-<size> is outer space (e.g. margin), defaults is <row|column>-gap
+//
+// Space between items in row container.
+$row-gap-xl: 30px;
+$row-gap-lg: 20px;
+$row-gap: 10px;
+$row-gap-md: 5px;
+$row-gap-sm: 2px;
+$row-gap-xs: 1px;
+// Space between items in column container.
+$column-gap-xl: 30px;
+$column-gap-lg: 20px;
+$column-gap: 10px;
+$column-gap-md: 5px;
+$column-gap-sm: 2px;
+$column-gap-xs: 1px;
