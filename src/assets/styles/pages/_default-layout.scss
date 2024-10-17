@@ -1,4 +1,4 @@
-@import '../abstracts/variables';
+@use '../abstracts/variables' as *;
 
 // sticky header height normal, no scrolling
 $header-max-height: 100px;

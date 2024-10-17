@@ -1,15 +1,23 @@
 // Base
-@import './base/layout';
-@import './base/normalize';
-@import './base/typography';
+@use './base/layout';
+@use './base/normalize';
+@use './base/typography';
 
 // App font: load your font
 //@use 'base/fonts/arial' as font;
 //@use 'base/fonts/helvetica' as font;
-@import './base/fonts/montserrat.scss';
+@use './base/fonts/montserrat.scss';
 
 // Icons
 // @use 'base/mat-icons';
 
 // Page layout: header, main, footer
-@import  '../../assets/styles/pages/default-layout';
+@use  '../../assets/styles/pages/default-layout';
+
+// Components
+@use  '../../assets/styles/components/product-item';
+
+// UI
+@use  '../../assets/styles/UI/buttons';
+@use  '../../assets/styles/UI/offers';
+@use  '../../assets/styles/UI/taste';
