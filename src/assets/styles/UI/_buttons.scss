@@ -17,10 +17,16 @@
 
   .product-actions & {
     height: 48px;
-    flex: 0 1 50%;
+    flex: 1 1 calc(50% - 16px);
     padding: 0 18px;
     text-wrap: nowrap;
     gap: 8px;
+  }
+
+  .product-collect-card & {
+    padding: 0 6px 0 24px;
+    z-index: 3;
+    gap: 12px;
   }
 
   &:hover {
@@ -58,6 +64,10 @@
 
   &:hover {
     background-color: $primary-hover;
+  }
+
+  .product-collect-card & img{
+    margin-top: 0;
   }
 }
 

@@ -10,3 +10,10 @@ body {
   flex-direction: column;
   background-color: #f2f5f7;
 }
+
+aside {
+  width: 100%;
+  max-width: 413px;
+  min-width: 280px;
+  flex-shrink: 2;
+}
