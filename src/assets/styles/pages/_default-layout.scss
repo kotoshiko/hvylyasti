@@ -6,7 +6,7 @@ $header-max-height: 100px;
 $header-min-height: 60px;
 
 // main content
-$content-padding-x: 50px;
+$content-padding-x: 20px;
 
 // footer
 $footer-text-color: #b1c4d0;
@@ -30,7 +30,7 @@ $footer-bg-color: #15384f;
     top: 0;
     height: $header-min-height;
     width: 100%;
-    max-width: $content-max-width;
+    max-width: $page-max-width;
     margin-left: auto;
     margin-right: auto;
     padding-left: $content-padding-x;
@@ -83,7 +83,7 @@ $footer-bg-color: #15384f;
   flex-direction: column;
   height: 100%;
   width: 100%;
-  max-width: $content-max-width;
+  max-width: $page-max-width;
   margin-left: auto;
   margin-right: auto;
   padding-left: $content-padding-x;
@@ -115,8 +115,7 @@ section {
   }
 
   .container {
-    padding: $gap-lg * 1.5;
-    background-color: #fff;
+    // padding: $gap-lg * 1.5;
 
     > :first-child {
       margin-top: 0;

@@ -45,6 +45,7 @@ module.exports = {
         },
         about: 'src/views/pages/about/index.html', // => dist/about.html
         404: './src/views/pages/404/index.html', // => dist/404.html
+        catalog: './src/views/pages/catalog/index.html', // => dist/catalog.html
       },
 
       js: {

@@ -15,9 +15,12 @@
 @use  '../../assets/styles/pages/default-layout';
 
 // Components
-@use  '../../assets/styles/components/product-item';
+@use  '../../assets/styles/components/product-card';
+@use  '../../assets/styles/components/product-collect-card';
+@use  '../../assets/styles/components/filter';
 
 // UI
 @use  '../../assets/styles/UI/buttons';
 @use  '../../assets/styles/UI/offers';
 @use  '../../assets/styles/UI/taste';
+@use '../../assets/styles/UI/icons';
