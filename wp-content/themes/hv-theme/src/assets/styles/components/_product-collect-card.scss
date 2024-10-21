@@ -1,0 +1,38 @@
+@use '../abstracts/variables' as *;
+
+.product-collect-card {
+  align-items: center;
+  justify-content: center;
+  background-color: $secondary-default;
+  overflow: hidden;
+
+  @media (max-width: 991px) {
+    height: 400px;
+  }
+}
+
+.product-collect-card-image {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) rotate(-44.39deg);
+  opacity: 0.2;
+  z-index: 2;
+}
+
+.product-collect-card-image img {
+  width: 100%;
+}
+
+.product-collect-card-bg {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 489px;
+  border-radius: 0 0 20px 20px;
+  overflow: hidden;
+
+  @media (max-width: 991px) {
+    top: 30px;
+    right: 0;
+  }
+}
