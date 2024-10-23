@@ -1,3 +1,5 @@
+@use '../../../assets/styles/abstracts/variables' as *;
+
 $font-family: Montserrat, Helvetica, sans-serif !default;
 $font-size: 16px !default;
 
@@ -210,4 +212,14 @@ a {
 
   display: inline-block;
   transform: scaleX(-1);
+}
+
+.title {
+  margin-bottom: 40px;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 40px;
+  color: $primary-default;
+  text-transform: uppercase;
+  text-align: center;
 }
