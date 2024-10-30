@@ -1,0 +1,82 @@
+@use '../../../assets/styles/main.scss';
+@use '../../../assets/styles/abstracts/variables' as *;
+
+.collect-box {
+  padding: 72px 0 106px;
+}
+
+.collect-box-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.collect-box-content {
+  flex: 1 1 100%;
+}
+
+.collect-box-wrapper {
+  position: relative;
+  height: 760px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 80.39%, rgba(0, 0, 0, 0.1) 100%);
+  border-radius: 24px;
+  box-shadow:
+    0px 5px 5px 0px #0000001a,
+    0px 3px 14px 0px #00000008,
+    0px 8px 10px 0px #00000008;
+
+  overflow: hidden;
+}
+
+.collect-box-images {
+  position: relative;
+  z-index: -1;
+}
+
+.collect-box-photo {
+  display: none;
+  width: 100%;
+  height: 760px;
+  object-fit: cover;
+
+  &.active {
+    display: block;
+  }
+}
+
+.collect-box-thumbnails {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  transform: translateX(-50%);
+}
+
+.collect-box-thumbnail {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border: 2px solid $white;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+.collect-box-fullscreen-btn {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  width: 36px;
+  height: 36px;
+  background-color: $primary-default;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
