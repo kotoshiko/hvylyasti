@@ -1,6 +1,60 @@
 @use '../../../assets/styles/main.scss';
-@use '../../../assets/styles/abstracts/variables';
+@use '../../../assets/styles/abstracts/variables' as *;
 
-h1 {
-  color: orangered;
+.about {
+  padding-top: 121px;
+
+  & .title {
+    margin-bottom: 180px;
+  }
+}
+
+.about-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+
+  &:nth-child(odd) img {
+    margin-left: -20px;
+  }
+
+  &:nth-child(even) img {
+    margin-right: -30px;
+  }
+
+  @media (max-width: 991px) {
+    flex-direction: column;
+    gap: 0;
+
+    &:nth-child(even) {
+      flex-direction: column-reverse;
+    }
+  }
+}
+
+.about-title {
+  margin-bottom: 40px;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 40px;
+  color: $primary-default;
+
+  @media (max-width: 991px) {
+    text-align: center;
+  }
+}
+
+.about-text {
+  margin-top: 18px;
+  margin-bottom: 0;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  color:  $primary-default;
 }

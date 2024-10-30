@@ -14,7 +14,12 @@ $_head-font-weight: 600;
 $_gap-top: 24px;
 $_gap-bottom: 16px;
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
   hyphens: auto;
@@ -25,50 +30,67 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4,
-h5, .h5,
-h6, .h6,
-.s1, .s2, .s3, .s4, .s5, .s6 {
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6,
+.s1,
+.s2,
+.s3,
+.s4,
+.s5,
+.s6 {
   margin-top: $_gap-top;
   margin-bottom: $_gap-bottom;
 }
 
 // Headlines
 
-h1, .h1 {
+h1,
+.h1 {
   font-weight: $_head-font-weight;
   font-size: 32px;
   line-height: 40px;
 }
 
-h2, .h2 {
+h2,
+.h2 {
   font-weight: $_head-font-weight;
   font-size: 24px;
   line-height: 30px;
 }
 
-h3, .h3 {
+h3,
+.h3 {
   font-weight: $_head-font-weight;
   font-size: 20px;
   line-height: 25px;
 }
 
-h4, .h4 {
+h4,
+.h4 {
   font-weight: $_head-font-weight;
   font-size: 16px;
   line-height: 20px;
 }
 
-h5, .h5 {
+h5,
+.h5 {
   font-weight: $_head-font-weight;
   font-size: 14px;
   line-height: 18px;
 }
 
-h6, .h6 {
+h6,
+.h6 {
   font-weight: $_head-font-weight;
   font-size: 13.7px;
   line-height: 18px;
@@ -118,7 +140,8 @@ $_subline-font-weight: normal;
 
 // Text
 
-b, .b,
+b,
+.b,
 strong,
 .strong {
   font-weight: bold;
@@ -145,7 +168,8 @@ strong,
 }
 
 // default
-p, .p {
+p,
+.p {
   margin: 10px 0;
   font-size: 16px;
   line-height: 20px;
@@ -222,4 +246,9 @@ a {
   color: $primary-default;
   text-transform: uppercase;
   text-align: center;
+
+  &-big {
+    font-size: 64px;
+    line-height: 80px;
+  }
 }

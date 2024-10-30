@@ -126,3 +126,16 @@ section {
 .teaser {
   margin-bottom: $gap-lg;
 }
+
+.bg-wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 320px;
+
+  @media (max-width: 768px) {
+    height: 248px;
+  }
+}
