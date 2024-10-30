@@ -6,6 +6,7 @@ $font-size: 16px !default;
 body {
   font-family: $font-family;
   font-size: $font-size;
+  color: $primary-default;
 }
 
 // Headings
@@ -206,7 +207,7 @@ pre code {
 // Misc
 
 a {
-  color: #737373;
+  color: $primary-default;
   text-decoration: none;
 
   &.underline {
@@ -218,24 +219,23 @@ a {
   }
 
   &:hover {
-    text-decoration: underline;
+    text-decoration: none;
   }
 }
 
 .teaser {
-  color: #737373;
+  color: $primary-default;
   text-align: center;
   font-size: 18px;
 }
 
-.copyleft {
+.copyright {
+  display: inline-block;
+
   &:before {
     content: '\00a9';
     font-size: 114%;
   }
-
-  display: inline-block;
-  transform: scaleX(-1);
 }
 
 .title {

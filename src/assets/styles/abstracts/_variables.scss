@@ -1,7 +1,7 @@
 // Max width of all header, banners, widgets, etc. It can be wider then page section content.
 $page-max-width: 1320px;
 // Max width of content in page section.
-$content-max-width: 960px;
+$content-max-width: 1920px;
 
 // Notation of spaces for global usage (padding, margin):
 // $gap-<size> is inner space (e.g. padding), defaults is $gap
@@ -37,6 +37,7 @@ $grey: #818181;
 $dark-grey: #464646;
 $primary-default: #0e0e0e;
 $primary-hover: #000;
+$oil: #1B1B1B;
 $secondary-default: #ffd504;
 $secondary-hover: #f3cb03;
 $status-info-bg: #e1f0fe;

@@ -14,15 +14,7 @@
 </head>
 <body id="app">
   <!-- Header -->
-  <div class="header-container">
-    <div class="header-content">
-      <a class="header-left" href="index.html">
-        <img class="app-logo" src="@images/app-logo.png"><span>App demo</span>
-      </a>
-      {% include "src/views/partials/navigation.html" %}
-      <div class="header-right"></div>
-    </div>
-  </div>
+  {% include "src/views/partials/header/header.html" %}
 
   <!-- Main content -->
   <main class="main-container">
@@ -35,9 +27,7 @@
   </main>
 
   <!-- Footer -->
-  <div class="footer-container">
-    {% include "src/views/partials/footer.html" %}
-  </div>
+  {% include "src/views/partials/footer/footer.html" %}
 
   <!-- block for specific page scripts -->
   {% block scripts %}{% endblock %}
