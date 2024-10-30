@@ -11,7 +11,7 @@
 // Icons
 // @use 'base/mat-icons';
 
-// Page layout: header, main, footer
+// Page layout: main
 @use  '../../assets/styles/pages/default-layout';
 
 // Components
@@ -19,6 +19,11 @@
 @use  '../../assets/styles/components/product-collect-card';
 @use  '../../assets/styles/components/filter';
 @use  '../../assets/styles/components/fullscreenModal';
+
+// Partials
+@use  '../../assets/styles/partials/header';
+@use  '../../assets/styles/partials/footer';
+@use  '../../assets/styles/partials/navigation';
 
 // UI
 @use  '../../assets/styles/UI/buttons';
