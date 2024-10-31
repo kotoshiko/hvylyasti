@@ -1,5 +1,5 @@
 document.querySelectorAll(".filter-content").forEach(function (content) {
-  content.style.height = content.scrollHeight + "px";
+  content.style.height = "auto";
 });
 
 document.querySelectorAll(".filter-header").forEach(function (header) {
