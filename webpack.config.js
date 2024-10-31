@@ -52,7 +52,11 @@ module.exports = {
         },
         thanks: {
           import: './src/views/pages/thanks/index.html',
-          filename: 'thanks.html' // => dist/collect-box.html
+          filename: 'thanks.html' // => dist/thanks.html
+        },
+        delivery: {
+          import: './src/views/pages/delivery/index.html',
+          filename: 'delivery.html' // => dist/delivery.html
         },
       },
 
