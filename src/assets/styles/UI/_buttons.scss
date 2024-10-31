@@ -1,4 +1,5 @@
 @use '../abstracts/variables' as *;
+@use '../abstracts/breakpoints' as *;
 
 .button {
   display: flex;
@@ -28,6 +29,10 @@
     padding: 0 6px 0 24px;
     z-index: 3;
     gap: 12px;
+  }
+
+  .form-promo & {
+    height: 48px;
   }
 
   &:hover {
@@ -93,6 +98,15 @@
     }
   }
 
+  .cart-form-order & {
+    width: 100%;
+    margin-bottom: 16px;
+    box-shadow:
+      0px 2px 4px 0px #0000001a,
+      0px 1px 10px 0px #00000008,
+      0px 4px 5px 0px #00000008;
+  }
+
   &:hover {
     background-color: $secondary-hover;
   }
@@ -101,6 +115,11 @@
 .button-outlined {
   color: $primary-default;
   border: 1px solid $primary-default;
+
+  .cart-form-order & {
+    width: 100%;
+    border: 1px solid $primary-default;
+  }
 
   &:hover {
     background-color: $primary-hover;
@@ -153,9 +172,19 @@
   height: 48px;
   width: max-content;
   padding: 12px 22px 12px 12px;
-  margin-top: 40px;
+  margin: 20px auto 0;
 
-  @media (max-width: 991px) {
-    margin: 20px auto 0;
+  @media (min-width: $breakpoints-lg) {
+    margin: 40px 0;
   }
+}
+
+.button-remove {
+  margin-left: auto;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  flex-shrink: 0;
+  border: 1px solid $primary-default;
+  border-radius: 50%;
 }

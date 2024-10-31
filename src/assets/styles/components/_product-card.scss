@@ -1,11 +1,12 @@
 @use '../abstracts/variables' as *;
+@use '../abstracts/breakpoints' as *;
 
 .product-card {
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 413px;
+  max-width: 100%;
   height: auto;
   background-color: #fff;
   border-radius: 16px;
@@ -22,8 +23,8 @@
       0px 12px 17px 0px #00000008;
   }
 
-  @media (max-width: 991px) {
-    max-width: 100%;
+  @media (min-width: $breakpoints-lg) {
+    max-width: 413px;
   }
 }
 
@@ -69,6 +70,11 @@
   .filter-content-count & {
     justify-content: start;
     padding-left: 16px;
+  }
+
+  .cart-product & {
+    margin-bottom: 0;
+    justify-content: start;
   }
 }
 

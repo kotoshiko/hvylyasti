@@ -1,13 +1,15 @@
 @use '../abstracts/variables' as *;
+@use '../abstracts/breakpoints' as *;
 
 .product-collect-card {
   align-items: center;
   justify-content: center;
   background-color: $secondary-default;
   overflow: hidden;
+  height: 400px;
 
-  @media (max-width: 991px) {
-    height: 400px;
+  @media (min-width: $breakpoints-lg) {
+    height: auto;
   }
 }
 
@@ -27,12 +29,14 @@
   position: absolute;
   bottom: 0;
   right: 0;
+  top: 30px;
+  right: 0;
   height: 489px;
   border-radius: 0 0 20px 20px;
   overflow: hidden;
 
-  @media (max-width: 991px) {
-    top: 30px;
+  @media (min-width: $breakpoints-lg) {
     right: 0;
+    top: unset;
   }
 }
