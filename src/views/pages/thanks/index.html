@@ -1,0 +1,23 @@
+{% extends "src/views/layouts/default.html" %}
+
+<!-- set variables used in layout -->
+{% set title="Thank you page" %} {% block styles %}
+<!-- load specific page style -->
+<link href="./style.scss" rel="stylesheet" />
+{% endblock %} {% block scripts %}
+<!-- load specific page script -->
+<script src="./thanks.js"></script>
+{% endblock %} {% block content %}
+<section class="thanks">
+  <div class="title-section">
+    <img src="@images/bg-wave.png" class="bg-wave" alt="" />
+    <div class="title-section-inner">
+      <img src="@images/icons/thanks/thanks.svg" alt="" />
+    </div>
+  </div>
+  <div class="thanks-content">
+    <h1 class="h2">Дякуємо за ваше замовлення!</h1>
+    <p class="p-md">Зовсім скоро посилочка від Хвилястих вирушить до вас!</p>
+  </div>
+</section>
+{% endblock %}

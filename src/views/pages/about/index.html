@@ -9,15 +9,17 @@
 <script src="./about.js"></script>
 {% endblock %} {% block content %}
 <section class="about">
-  <div>
-    <img src="../../../assets/images/bg-wave.png" alt="" class="bg-wave" />
+  <div class="title-section">
+    <img src="@images/bg-wave.png" class="bg-wave" alt="" />
+    <div class="title-section-inner">
+      <h1 class="title title-big">Про нас</h1>
+    </div>
   </div>
   <div class="container flex-column center-x">
-    <h1 class="title title-big">Про нас</h1>
     <div class="about-inner">
       <div class="about-content">
         <div>
-          <img src="../../../assets/images/about/about-1.png" alt="about us" />
+          <img src="@images/about/about-1.png" alt="about us" />
         </div>
         <div class="about-info">
           <h3 class="about-title">Про нас</h3>
@@ -51,12 +53,12 @@
           </a>
         </div>
         <div>
-          <img src="../../../assets/images/about/about-2.png" alt="" />
+          <img src="@images/about/about-2.png" alt="" />
         </div>
       </div>
       <div class="about-content">
         <div>
-          <img src="../../../assets/images/about/about-3.png" alt="" />
+          <img src="@images/about/about-3.png" alt="" />
         </div>
         <div class="about-info">
           <h3 class="about-title">Продукт</h3>

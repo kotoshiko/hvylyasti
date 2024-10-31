@@ -2,16 +2,13 @@
 @use '../../../assets/styles/abstracts/variables' as *;
 
 .about {
-  padding-top: 121px;
-
-  & .title {
-    margin-bottom: 180px;
-  }
+  padding-bottom: 120px;
 }
 
 .about-inner {
   display: flex;
   flex-direction: column;
+  padding-top: 80px;
 }
 
 .about-content {

@@ -1,7 +1,7 @@
 @use '../../../assets/styles/main.scss';
 @use '../../../assets/styles/abstracts/variables' as *;
 
-.error-page {
+.thanks {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,13 +23,9 @@
       }
     }
   }
-
-  .button {
-    width: fit-content;
-  }
 }
 
-.error-page-content {
+.thanks-content {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
