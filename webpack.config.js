@@ -50,6 +50,10 @@ module.exports = {
           import: './src/views/pages/collect-box/index.html',
           filename: 'collect-box.html' // => dist/collect-box.html
         },
+        thanks: {
+          import: './src/views/pages/thanks/index.html',
+          filename: 'thanks.html' // => dist/collect-box.html
+        },
       },
 
       js: {
