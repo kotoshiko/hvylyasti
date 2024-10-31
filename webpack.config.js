@@ -58,6 +58,7 @@ module.exports = {
           import: './src/views/pages/delivery/index.html',
           filename: 'delivery.html' // => dist/delivery.html
         },
+        cart: './src/views/pages/cart/index.html', // => dist/cart.html
       },
 
       js: {

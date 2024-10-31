@@ -89,6 +89,13 @@
     padding: 0;
     border-top: 1px solid transparent;
   }
+
+  .cart-form & {
+    display: flex;
+    gap: 24px;
+    padding: 0;
+    border-top: none;
+  }
 }
 
 .filter-content-wrapper {
@@ -135,6 +142,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  .cart-form & {
+    flex: 0 1 auto;
   }
 }
 
