@@ -59,6 +59,7 @@ module.exports = {
           filename: 'delivery.html' // => dist/delivery.html
         },
         cart: './src/views/pages/cart/index.html', // => dist/cart.html
+        vergocy: './src/views/pages/vergocy/index.html', // => dist/vergocy.html
       },
 
       js: {
