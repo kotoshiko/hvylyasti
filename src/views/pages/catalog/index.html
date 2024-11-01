@@ -9,16 +9,16 @@
   <div class="container">
     <h1 class="catalog-title">інтернет магазин “хвилясті”</h1>
     <div class="catalog-inner">
-      <aside>
-        {% include "src/views/components/filter-form.html" %}
-      </aside>
+      <aside>{% include "src/views/components/filter-form.html" %}</aside>
       <ul class="catalog-list">
-        {% include "src/views/components/product-card.html" %} {% include "src/views/components/product-collect-card.html" %}
-        {% include "src/views/components/product-card.html" %} {% include "src/views/components/product-card.html" %} 
-        {% include "src/views/components/product-card.html" %} {% include "src/views/components/product-card.html" %}
+        {% include "src/views/components/product-card.html" %} {% include
+        "src/views/components/product-collect-card.html" %} {% include "src/views/components/product-card.html" %} {%
+        include "src/views/components/product-card.html" %} {% include "src/views/components/product-card.html" %} {%
+        include "src/views/components/product-card.html" %}
       </ul>
     </div>
   </div>
 </section>
+{% include "src/views/components/modal.html" %}
 <script src="catalog.js"></script>
 {% endblock %}

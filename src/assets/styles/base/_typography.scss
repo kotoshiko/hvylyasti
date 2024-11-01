@@ -251,4 +251,8 @@ a {
     font-size: 64px;
     line-height: 80px;
   }
+
+  .modal & {
+    margin: 0 auto 40px;
+  }
 }
