@@ -1,55 +1,27 @@
 <?php
-namespace Opencart\System\Library\Cart;
-/**
- * Class Length
- *
- * @package
- */
+namespace Cart;
 class Length {
-	/**
-	 * @var object|mixed|null
-	 */
-	private object $db;
-	/**
-	 * @var object|mixed|null
-	 */
-	private object $config;
-	/**
-	 * @var array
-	 */
-	private array $lengths = [];
+	private $lengths = array();
+	private $db;
+	private $config;
 
-	/**
-	 * Constructor
-	 *
-	 * @param    object  $registry
-	 */
-	public function __construct(\Opencart\System\Engine\Registry $registry) {
+	public function __construct($registry) {
 		$this->db = $registry->get('db');
 		$this->config = $registry->get('config');
 
-		$length_class_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "length_class` mc LEFT JOIN `" . DB_PREFIX . "length_class_description` mcd ON (mc.`length_class_id` = mcd.`length_class_id`) WHERE mcd.`language_id` = '" . (int)$this->config->get('config_language_id') . "'");
+		$length_class_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "length_class mc LEFT JOIN " . DB_PREFIX . "length_class_description mcd ON (mc.length_class_id = mcd.length_class_id) WHERE mcd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		foreach ($length_class_query->rows as $result) {
-			$this->lengths[$result['length_class_id']] = [
+			$this->lengths[$result['length_class_id']] = array(
 				'length_class_id' => $result['length_class_id'],
 				'title'           => $result['title'],
 				'unit'            => $result['unit'],
 				'value'           => $result['value']
-			];
+			);
 		}
 	}
 
-	/**
-	 * Convert
-	 *
-	 * @param    float  $value
-	 * @param    string  $from
-	 * @param    string  $to
-	 *
-	 * @return   float
-	 */
-	public function convert(float $value, string $from, string $to): float {
+	public function convert($value, $from, $to) {
 		if ($from == $to) {
 			return $value;
 		}
@@ -69,17 +41,7 @@ class Length {
 		return $value * ($to / $from);
 	}
 
-	/**
-	 * Format
-	 *
-	 * @param    float  $value
-	 * @param    int  $length_class_id
-	 * @param    string  $decimal_point
-	 * @param    string  $thousand_point
-	 *
-	 * @return   string
-	 */
-	public function format(float $value, int $length_class_id, string $decimal_point = '.', string $thousand_point = ','): string {
+	public function format($value, $length_class_id, $decimal_point = '.', $thousand_point = ',') {
 		if (isset($this->lengths[$length_class_id])) {
 			return number_format($value, 2, $decimal_point, $thousand_point) . $this->lengths[$length_class_id]['unit'];
 		} else {
@@ -87,14 +49,7 @@ class Length {
 		}
 	}
 
-	/**
-	 * getUnit
-	 *
-	 * @param    int  $length_class_id
-	 *
-	 * @return   string
-	 */
-	public function getUnit(int $length_class_id): string {
+	public function getUnit($length_class_id) {
 		if (isset($this->lengths[$length_class_id])) {
 			return $this->lengths[$length_class_id]['unit'];
 		} else {

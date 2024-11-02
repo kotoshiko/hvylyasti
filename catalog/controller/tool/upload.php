@@ -1,30 +1,21 @@
 <?php
-namespace Opencart\Catalog\Controller\Tool;
-/**
- * Class Upload
- *
- * @package Opencart\Catalog\Controller\Tool
- */
-class Upload extends \Opencart\System\Engine\Controller {
-	/**
-	 * @return void
-	 */
-	public function index(): void {
+class ControllerToolUpload extends Controller {
+	public function index() {
 		$this->load->language('tool/upload');
 
-		$json = [];
+		$json = array();
 
 		if (!empty($this->request->files['file']['name']) && is_file($this->request->files['file']['tmp_name'])) {
 			// Sanitize the filename
 			$filename = basename(preg_replace('/[^a-zA-Z0-9\.\-\s+]/', '', html_entity_decode($this->request->files['file']['name'], ENT_QUOTES, 'UTF-8')));
 
 			// Validate the filename length
-			if ((oc_strlen($filename) < 3) || (oc_strlen($filename) > 64)) {
+			if ((utf8_strlen($filename) < 3) || (utf8_strlen($filename) > 64)) {
 				$json['error'] = $this->language->get('error_filename');
 			}
 
 			// Allowed file extension types
-			$allowed = [];
+			$allowed = array();
 
 			$extension_allowed = preg_replace('~\r?\n~', "\n", $this->config->get('config_file_ext_allowed'));
 
@@ -35,11 +26,11 @@ class Upload extends \Opencart\System\Engine\Controller {
 			}
 
 			if (!in_array(strtolower(substr(strrchr($filename, '.'), 1)), $allowed)) {
-				$json['error'] = $this->language->get('error_file_type');
+				$json['error'] = $this->language->get('error_filetype');
 			}
 
 			// Allowed file mime types
-			$allowed = [];
+			$allowed = array();
 
 			$mime_allowed = preg_replace('~\r?\n~', "\n", $this->config->get('config_file_mime_allowed'));
 
@@ -50,7 +41,14 @@ class Upload extends \Opencart\System\Engine\Controller {
 			}
 
 			if (!in_array($this->request->files['file']['type'], $allowed)) {
-				$json['error'] = $this->language->get('error_file_type');
+				$json['error'] = $this->language->get('error_filetype');
+			}
+
+			// Check to see if any PHP files are trying to be uploaded
+			$content = file_get_contents($this->request->files['file']['tmp_name']);
+
+			if (preg_match('/\<\?php/i', $content)) {
+				$json['error'] = $this->language->get('error_filetype');
 			}
 
 			// Return any upload error
@@ -62,11 +60,11 @@ class Upload extends \Opencart\System\Engine\Controller {
 		}
 
 		if (!$json) {
-			$file = $filename . '.' . oc_token(32);
+			$file = $filename . '.' . token(32);
 
 			move_uploaded_file($this->request->files['file']['tmp_name'], DIR_UPLOAD . $file);
 
-			// Hide the uploaded file name so people cannot link to it directly.
+			// Hide the uploaded file name so people can not link to it directly.
 			$this->load->model('tool/upload');
 
 			$json['code'] = $this->model_tool_upload->addUpload($filename, $file);

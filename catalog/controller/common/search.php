@@ -1,15 +1,6 @@
 <?php
-namespace Opencart\Catalog\Controller\Common;
-/**
- * Class Search
- *
- * @package Opencart\Catalog\Controller\Common
- */
-class Search extends \Opencart\System\Engine\Controller {
-	/**
-	 * @return string
-	 */
-	public function index(): string {
+class ControllerCommonSearch extends Controller {
+	public function index() {
 		$this->load->language('common/search');
 
 		$data['text_search'] = $this->language->get('text_search');
@@ -19,8 +10,6 @@ class Search extends \Opencart\System\Engine\Controller {
 		} else {
 			$data['search'] = '';
 		}
-
-		$data['language'] = $this->config->get('config_language');
 
 		return $this->load->view('common/search', $data);
 	}

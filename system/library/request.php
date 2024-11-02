@@ -2,35 +2,21 @@
 /**
  * @package		OpenCart
  * @author		Daniel Kerr
- * @copyright	Copyright (c) 2005 - 2022, OpenCart, Ltd. (https://www.opencart.com/)
+ * @copyright	Copyright (c) 2005 - 2017, OpenCart, Ltd. (https://www.opencart.com/)
  * @license		https://opensource.org/licenses/GPL-3.0
  * @link		https://www.opencart.com
 */
-namespace Opencart\System\Library;
+
 /**
- * Class Request
- */
+* Request class
+*/
 class Request {
-	/**
-	 * @var array|mixed
-	 */
-	public array $get = [];
-	/**
-	 * @var array|mixed
-	 */
-	public array $post = [];
-	/**
-	 * @var array|mixed
-	 */
-	public array $cookie = [];
-	/**
-	 * @var array|mixed
-	 */
-	public array $files = [];
-	/**
-	 * @var array|mixed
-	 */
-	public array $server = [];
+	public $get = array();
+	public $post = array();
+	public $request = array();
+	public $cookie = array();
+	public $files = array();
+	public $server = array();
 	
 	/**
 	 * Constructor
@@ -38,19 +24,19 @@ class Request {
 	public function __construct() {
 		$this->get = $this->clean($_GET);
 		$this->post = $this->clean($_POST);
+		$this->request = $this->clean($_REQUEST);
 		$this->cookie = $this->clean($_COOKIE);
 		$this->files = $this->clean($_FILES);
 		$this->server = $this->clean($_SERVER);
 	}
 	
 	/**
-     * Clean
+     * 
+	 * @param	array	$data
 	 *
-	 * @param	mixed	$data
-	 *
-     * @return	mixed
+     * @return	array
      */
-	public function clean(mixed $data): mixed {
+	public function clean($data) {
 		if (is_array($data)) {
 			foreach ($data as $key => $value) {
 				unset($data[$key]);
@@ -58,7 +44,7 @@ class Request {
 				$data[$this->clean($key)] = $this->clean($value);
 			}
 		} else {
-			$data = trim(htmlspecialchars($data, ENT_COMPAT, 'UTF-8'));
+			$data = htmlspecialchars($data, ENT_COMPAT, 'UTF-8');
 		}
 
 		return $data;

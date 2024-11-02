@@ -1,18 +1,6 @@
 <?php
-namespace Opencart\Catalog\Model\Account;
-/**
- * Class Activity
- *
- * @package Opencart\Catalog\Model\Account
- */
-class Activity extends \Opencart\System\Engine\Model {
-	/**
-	 * @param string $key
-	 * @param array  $data
-	 *
-	 * @return void
-	 */
-	public function addActivity(string $key, array $data): void {
+class ModelAccountActivity extends Model {
+	public function addActivity($key, $data) {
 		if (isset($data['customer_id'])) {
 			$customer_id = $data['customer_id'];
 		} else {
