@@ -2,28 +2,25 @@
 /**
  * @package		OpenCart
  * @author		Daniel Kerr
- * @copyright	Copyright (c) 2005 - 2022, OpenCart, Ltd. (https://www.opencart.com/)
+ * @copyright	Copyright (c) 2005 - 2017, OpenCart, Ltd. (https://www.opencart.com/)
  * @license		https://opensource.org/licenses/GPL-3.0
  * @link		https://www.opencart.com
 */
-namespace Opencart\System\Library;
-/**
- * Class Template
- */
-class Template {
-	/**
-	 * @var object|mixed
-	 */
-	private object $adaptor;
 
+/**
+* Template class
+*/
+class Template {
+	private $adaptor;
+	
 	/**
 	 * Constructor
 	 *
-	 * @param    string $adaptor
+	 * @param	string	$adaptor
 	 *
-	 */
-	public function __construct(string $adaptor) {
-		$class = 'Opencart\System\Library\Template\\' . $adaptor;
+ 	*/
+  	public function __construct($adaptor) {
+	    $class = 'Template\\' . $adaptor;
 
 		if (class_exists($class)) {
 			$this->adaptor = new $class();
@@ -31,27 +28,26 @@ class Template {
 			throw new \Exception('Error: Could not load template adaptor ' . $adaptor . '!');
 		}
 	}
-
+	
 	/**
-	 * addPath
+	 * 
 	 *
-	 * @param    string $namespace
-	 * @param    string $directory
-	 */
-	public function addPath(string $namespace, string $directory = ''): void {
-		$this->adaptor->addPath($namespace, $directory);
+	 * @param	string	$key
+	 * @param	mixed	$value
+ 	*/	
+	public function set($key, $value) {
+		$this->adaptor->set($key, $value);
 	}
-
+	
 	/**
-	 * Render
+	 * 
 	 *
-	 * @param    string $filename
-	 * @param	 array	$data
-	 * @param    string $code
+	 * @param	string	$template
+	 * @param	bool	$cache
 	 *
-	 * @return    string
-	 */
-	public function render(string $filename, array $data = [], string $code = ''): string {
-		return $this->adaptor->render($filename, $data, $code);
+	 * @return	string
+ 	*/	
+	public function render($template, $cache = false) {
+		return $this->adaptor->render($template, $cache);
 	}
 }

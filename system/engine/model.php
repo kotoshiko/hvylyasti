@@ -2,57 +2,28 @@
 /**
  * @package		OpenCart
  * @author		Daniel Kerr
- * @copyright	Copyright (c) 2005 - 2022, OpenCart, Ltd. (https://www.opencart.com/)
+ * @copyright	Copyright (c) 2005 - 2017, OpenCart, Ltd. (https://www.opencart.com/)
  * @license		https://opensource.org/licenses/GPL-3.0
  * @link		https://www.opencart.com
 */
 
 /**
 * Model class
+ *
+ * @mixin Registry
 */
-namespace Opencart\System\Engine;
-/**
- * Class Model
- */
-class Model {
-	/**
-	 * @var object|\Opencart\System\Engine\Registry
-	 */
+abstract class Model {
 	protected $registry;
 
-	/**
-	 * Constructor
-	 *
-	 * @param    object  $registry
-	 */
-	public function __construct(\Opencart\System\Engine\Registry $registry) {
+	public function __construct($registry) {
 		$this->registry = $registry;
 	}
 
-	/**
-     * __get
-     *
-     * @param	string	$key
-	 *
-	 * @return	object
-     */
-	public function __get(string $key): object {
-		if ($this->registry->has($key)) {
-			return $this->registry->get($key);
-		} else {
-			throw new \Exception('Error: Could not call registry key ' . $key . '!');
-		}
+	public function __get($key) {
+		return $this->registry->get($key);
 	}
 
-	/**
-     * __set
-     *
-     * @param	string	$key
-	 * @param	string	$value
-	 *
-	 * @return	void
-     */
-	public function __set(string $key, object $value): void {
+	public function __set($key, $value) {
 		$this->registry->set($key, $value);
 	}
 }

@@ -1,0 +1,108 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/breakpoints' as *;
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(14, 14, 14, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 0;
+  max-width: 100%;
+  max-height: 100%;
+  height: 100%;
+  overflow: scroll;
+
+  @media (min-width: $breakpoints-sm) {
+    border-radius: 8px;
+    max-width: 720px;
+    max-height: 600px;
+  }
+}
+
+.product-standart {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: $primary-default;
+  text-align: center;
+}
+
+.product-taste-wrapper {
+  &:not(:last-child) {
+    border-bottom: 1px solid $light-grey;
+  }
+}
+
+.product-taste {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 16px 0;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 15px;
+    height: 9px;
+    background-image: url("data:image/svg+xml,%3Csvg width='15' height='10' viewBox='0 0 15 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.6669 6.87976L7.94692 1.22643C7.82297 1.10146 7.6755 1.00227 7.51303 0.934574C7.35055 0.866883 7.17627 0.832031 7.00026 0.832031C6.82424 0.832031 6.64997 0.866883 6.48749 0.934574C6.32501 1.00227 6.17754 1.10146 6.05359 1.22643L0.400257 6.87976C0.275286 7.00371 0.176093 7.15118 0.108402 7.31366C0.04071 7.47614 0.00585938 7.65041 0.00585938 7.82643C0.00585938 8.00244 0.04071 8.17672 0.108402 8.3392C0.176093 8.50168 0.275286 8.64915 0.400257 8.7731C0.650074 9.02143 0.988009 9.16082 1.34026 9.16082C1.6925 9.16082 2.03044 9.02143 2.28026 8.7731L7.00026 4.0531L11.7203 8.7731C11.9686 9.01942 12.3038 9.15829 12.6536 9.15976C12.8291 9.16078 13.003 9.12714 13.1655 9.06079C13.3279 8.99444 13.4757 8.89667 13.6003 8.7731C13.7297 8.6536 13.8342 8.50965 13.9076 8.34955C13.9811 8.18945 14.0221 8.01638 14.0283 7.84033C14.0345 7.66428 14.0058 7.48875 13.9438 7.32388C13.8817 7.15901 13.7876 7.00806 13.6669 6.87976Z' fill='%230E0E0E'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+  }
+
+  &.open:after {
+    transform: rotate(180deg);
+  }
+}
+
+.product-taste-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background-color: $secondary-default;
+  border: 1px solid $primary-default;
+}
+
+.product-taste-title {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  color: $primary-default;
+  text-align: left;
+}
+
+.product-composition {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease;
+
+  &.open {
+    height: auto;
+  }
+}
+
+.product-composition p {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  color: $primary-default;
+}

@@ -1,30 +1,39 @@
 <?php
-// String
-function oc_strlen(string $string) {
-	return mb_strlen($string);
+function token($length = 32) {
+	// Create random token
+	$string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	
+	$max = strlen($string) - 1;
+	
+	$token = '';
+	
+	for ($i = 0; $i < $length; $i++) {
+		$token .= $string[random_int(0, $max)];
+	}	
+	
+	return $token;
 }
 
-function oc_strpos(string $string, string $needle, int $offset = 0) {
-	return mb_strpos($string, $needle, $offset);
-}
+/**
+ * Backwards support for timing safe hash string comparisons
+ * 
+ * http://php.net/manual/en/function.hash-equals.php
+ */
 
-function oc_strrpos(string $string, string $needle, int $offset = 0) {
-	return mb_strrpos($string, $needle, $offset);
-}
+if(!function_exists('hash_equals')) {
+	function hash_equals($known_string, $user_string) {
+		$known_string = (string)$known_string;
+		$user_string = (string)$user_string;
 
-function oc_substr(string $string, int $offset, ?int $length = null) {
-	return mb_substr($string, $offset, $length);
-}
+		if(strlen($known_string) != strlen($user_string)) {
+			return false;
+		} else {
+			$res = $known_string ^ $user_string;
+			$ret = 0;
 
-function oc_strtoupper(string $string) {
-	return mb_strtoupper($string);
-}
+			for($i = strlen($res) - 1; $i >= 0; $i--) $ret |= ord($res[$i]);
 
-function oc_strtolower(string $string) {
-	return mb_strtolower($string);
-}
-
-// Other
-function oc_token(int $length = 32): string {
-	return substr(bin2hex(random_bytes($length)), 0, $length);
+			return !$ret;
+		}
+	}
 }
