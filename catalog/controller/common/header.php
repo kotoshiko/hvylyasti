@@ -4,6 +4,7 @@ class ControllerCommonHeader extends Controller {
 		// Analytics
 		$this->load->model('setting/extension');
 
+
 		$data['analytics'] = array();
 
 		$analytics = $this->model_setting_extension->getExtensions('analytics');
@@ -70,12 +71,35 @@ class ControllerCommonHeader extends Controller {
 		$data['checkout'] = $this->url->link('checkout/checkout', '', true);
 		$data['contact'] = $this->url->link('information/contact');
 		$data['telephone'] = $this->config->get('config_telephone');
+		$data['e_mail'] = $this->config->get('config_email');
 		
 		$data['language'] = $this->load->controller('common/language');
 		$data['currency'] = $this->load->controller('common/currency');
 		$data['search'] = $this->load->controller('common/search');
 		$data['cart'] = $this->load->controller('common/cart');
 		$data['menu'] = $this->load->controller('common/menu');
+
+		//add custom links to menu
+		//link to about page
+		$this->load->model('catalog/information');
+		$information_id = 4;
+
+		$about_info = $this->model_catalog_information->getInformation($information_id);
+		if ($about_info) {
+			$data['about_link'] = $this->url->link('information/information', 'information_id=' . $information_id);
+			$data['about_title'] = $about_info['title'];
+		} else {
+			$data['about_link'] = '';
+			$data['about_title'] = '';
+		}
+		//link to catalog
+		$this->load->language('common/header');
+
+		$data['catalog_link'] = $this->url->link('product/category');
+		$data['catalog_title'] = $this->language->get('text_category');
+
+
+
 
 		return $this->load->view('common/header', $data);
 	}

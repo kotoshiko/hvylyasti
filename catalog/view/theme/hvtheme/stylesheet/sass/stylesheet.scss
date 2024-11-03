@@ -1,0 +1,34 @@
+// Base
+@use 'base/layout';
+@use 'base/normalize';
+@use 'base/typography';
+
+// App font: load your font
+//@use 'base/fonts/arial' as font;
+//@use 'base/fonts/helvetica' as font;
+@use 'base/fonts/montserrat.scss';
+
+// Icons
+// @use 'base/mat-icons';
+
+// Page layout: main
+@use  'pages/default-layout';
+
+// Components
+@use  'components/product-card';
+@use  'components/product-collect-card';
+@use  'components/filter';
+@use  'components/fullscreenModal';
+@use  'components/form';
+@use  'components/modal';
+
+// Partials
+@use  'partials/header';
+@use  'partials/footer';
+@use  'partials/navigation';
+
+// UI
+@use  'UI/buttons';
+@use  'UI/offers';
+@use  'UI/taste';
+@use 'UI/icons';
