@@ -1,19 +1,17 @@
 <?php
-// Version
-define('VERSION', '3.0.4.0');
+/**
+ * Front to the WordPress application. This file doesn't do anything, but loads
+ * wp-blog-header.php which does and tells WordPress to load the theme.
+ *
+ * @package WordPress
+ */
 
-// Configuration
-if (is_file('config.php')) {
-	require_once('config.php');
-}
+/**
+ * Tells WordPress to load the WordPress theme and output it.
+ *
+ * @var bool
+ */
+define( 'WP_USE_THEMES', true );
 
-// Install
-if (!defined('DIR_APPLICATION')) {
-	header('Location: install/index.php');
-	exit;
-}
-
-// Startup
-require_once(DIR_SYSTEM . 'startup.php');
-
-start('catalog');
+/** Loads the WordPress Environment and Template */
+require __DIR__ . '/wp-blog-header.php';
