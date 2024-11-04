@@ -1,0 +1,54 @@
+@use '../../../assets/styles/main.scss';
+@use '../../../assets/styles/abstracts/variables' as *;
+@use '../../../assets/styles/abstracts/breakpoints' as *;
+
+.partners {
+  padding-bottom: 86px;
+
+  .title-section {
+    margin-bottom: 40px;
+  }
+}
+
+.partners-form-wrapper {
+  width: 100%;
+  max-width: 630px;
+  margin: 0 auto;
+  padding: 24px;
+  border-radius: 24px;
+
+  @media (min-width: $breakpoints-sm) {
+    background-color: #fff;
+    box-shadow:
+      0px 2px 4px 0px #0000001a,
+      0px 1px 10px 0px #00000008,
+      0px 4px 5px 0px #00000008;
+  }
+}
+
+.partners-form-title {
+  margin-bottom: 40px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  color: $primary-default;
+  text-align: center;
+
+  @media (min-width: $breakpoints-sm) {
+    text-align: left;
+  }
+}
+
+.partners-form-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 24px;
+
+  .form-group {
+    flex: 1 1 100%;
+
+    @media (min-width: $breakpoints-sm) {
+      flex: 1 1 calc(50% - 24px);
+    }
+  }
+}

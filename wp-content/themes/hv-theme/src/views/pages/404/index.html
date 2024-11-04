@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>404</title>
+    <!-- load source favicon via Webpack alias '@images' -->
+    <link href="@images/favicon.png" rel="icon" type='image/png'>
+    <!-- inline source style from local directory -->
+    <link href="./style.scss" rel="stylesheet">
+  </head>
+
+  <body id="app">
+    <main class="main-container">
+      <div class="main-content">
+        <section class="error-page">
+          <div class="title-section">
+            <img src="@images/bg-wave.png" class="bg-wave" alt="" />
+            <div class="title-section-inner">
+              <img src="@images/icons/warning/warning.svg" alt="" />
+            </div>
+          </div>
+          <div class="error-page-content">
+            <h1 class="h2">404</h1>
+            <p class="p-md">Упс! Щось пішло не за планом...</p>
+            <a href="index.html" class="button button-solid-secondary">На головну</a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    {% include "src/views/partials/footer/footer.html" %}
+
+  </body>
+
+</html>

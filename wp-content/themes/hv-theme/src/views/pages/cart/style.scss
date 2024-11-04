@@ -1,0 +1,135 @@
+@use '../../../assets/styles/main.scss';
+@use '../../../assets/styles/abstracts/variables' as *;
+@use '../../../assets/styles/abstracts/breakpoints' as *;
+
+.cart-section {
+  padding-bottom: 141px;
+
+  .title-section {
+    margin-bottom: 40px;
+  }
+}
+
+.cart {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 20px;
+
+  @media (min-width: $breakpoints-xl) {
+    flex-direction: row;
+  }
+}
+
+.cart-inner {
+  width: 100%;
+  height: max-content;
+  padding: 24px;
+  background-color: $white;
+  border-radius: 24px;
+  box-shadow:
+    0px 2px 4px 0px #0000001a,
+    0px 1px 10px 0px #00000008,
+    0px 4px 5px 0px #00000008;
+}
+
+.cart-order {
+  width: 413px;
+  flex-shrink: 0;
+}
+
+.cart-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cart-form-info {
+  padding: 24px;
+  background-color: $white;
+  border-radius: 24px;
+  box-shadow:
+    0px 2px 4px 0px #0000001a,
+    0px 1px 10px 0px #00000008,
+    0px 4px 5px 0px #00000008;
+}
+
+.cart-form-order {
+  padding: 24px;
+  background-color: $white;
+  border-radius: 24px;
+  box-shadow:
+    0px 2px 4px 0px #0000001a,
+    0px 1px 10px 0px #00000008,
+    0px 4px 5px 0px #00000008;
+}
+
+.cart-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.cart-title,
+.cart-product-title {
+  flex: 0 1 320px;
+  min-width: 230px;
+}
+
+.cart-price,
+.cart-product-price {
+  flex: 0 1 116px;
+}
+
+.cart-number,
+.cart-product-number {
+  flex: 0 1 140px;
+}
+
+.cart-total,
+.cart-product-total {
+  flex-shrink: 0;
+}
+
+.cart-total {
+  flex-basis: 102px;
+}
+
+.cart-product-total {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.cart-product {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 80px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  text-wrap: nowrap;
+  border-top: 1px solid $light-grey;
+}
+
+.cart-form-title {
+  margin-bottom: 40px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  color: $primary-default;
+}
+
+.cart-form-total {
+  margin-bottom: 40px;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 40px;
+  color: $primary-default;
+}

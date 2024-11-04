@@ -1,0 +1,64 @@
+@use '../../../assets/styles/main.scss';
+@use '../../../assets/styles/abstracts/variables' as *;
+@use '../../../assets/styles/abstracts/breakpoints' as *;
+
+.about {
+  padding-bottom: 120px;
+}
+
+.about-inner {
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px;
+}
+
+.about-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: 0;
+
+  &:nth-child(even) {
+    flex-direction: column-reverse;
+  }
+
+  &:nth-child(odd) .about-content-banner {
+    margin-left: -20px;
+  }
+
+  &:nth-child(even) .about-content-banner {
+    margin-right: -30px;
+  }
+
+  @media (min-width: $breakpoints-lg) {
+    flex-direction: row;
+    gap: 32px;
+
+    &:nth-child(even) {
+      flex-direction: row;
+    }
+  }
+}
+
+.about-title {
+  margin-bottom: 40px;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 40px;
+  color: $primary-default;
+  text-align: center;
+
+  @media (min-width: $breakpoints-lg) {
+    text-align: left;
+  }
+}
+
+.about-text {
+  margin-top: 18px;
+  margin-bottom: 0;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  color: $primary-default;
+}
