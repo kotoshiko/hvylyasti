@@ -1,0 +1,172 @@
+{% extends "src/views/layouts/default.html" %}
+
+<!-- set variables used in layout -->
+{% set title="Thank you page" %} {% block styles %}
+<!-- load specific page style -->
+<link href="./style.scss" rel="stylesheet" />
+{% endblock %} {% block scripts %}
+<!-- load specific page script -->
+<script src="./cart.js"></script>
+{% endblock %} {% block content %}
+<section class="cart-section">
+  <div class="title-section">
+    <img src="@images/bg-wave.png" class="bg-wave" alt="" />
+    <div class="title-section-inner">
+      <h1 class="title title-big">Кошик</h1>
+    </div>
+  </div>
+  <div class="cart">
+    <div class="cart-inner">
+      <div class="cart-header">
+         <div class="cart-title">Назва боксу</div>
+         <div class="cart-price">Ціна</div>
+         <div class="cart-number">К-сть</div>
+         <div class="cart-total">Сумма</div>
+      </div>
+      <div class="cart-product">
+        <div class="cart-product-title">Популярний бокс 1</div>
+        <div class="cart-product-price">200 ₴</div>
+        <div class="cart-product-number product-controls-wrapper">
+          <button class="button-control disabled">
+            <img src="@images/icons/minus.svg" alt="">
+          </button>
+          <span class="product-number">1</span>
+          <button class="button-control">
+            <img src="@images/icons/plus.svg" alt="">
+          </button>
+        </div>
+        <div class="cart-product-total">200 ₴
+          <button class="button button-remove">
+            <img src="@images/icons/remove.svg" alt="">
+          </button>
+        </div>
+      </div>
+      <div class="cart-product">
+        <div class="cart-product-title">Популярний бокс 1</div>
+        <div class="cart-product-price">200 ₴</div>
+        <div class="cart-product-number product-controls-wrapper">
+          <button class="button-control disabled">
+            <img src="@images/icons/minus.svg" alt="">
+          </button>
+          <span class="product-number">1</span>
+          <button class="button-control">
+            <img src="@images/icons/plus.svg" alt="">
+          </button>
+        </div>
+        <div class="cart-product-total">200 ₴
+          <button class="button button-remove">
+            <img src="@images/icons/remove.svg" alt="">
+          </button>
+        </div>
+      </div>
+      <div class="cart-product">
+        <div class="cart-product-title">Популярний бокс 1</div>
+        <div class="cart-product-price">200 ₴</div>
+        <div class="cart-product-number product-controls-wrapper">
+          <button class="button-control disabled">
+            <img src="@images/icons/minus.svg" alt="">
+          </button>
+          <span class="product-number">1</span>
+          <button class="button-control">
+            <img src="@images/icons/plus.svg" alt="">
+          </button>
+        </div>
+        <div class="cart-product-total">200 ₴
+          <button class="button button-remove">
+            <img src="@images/icons/remove.svg" alt="">
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="cart-order">
+      <form class="cart-form">
+        <div class="cart-form-info">
+          <div class="cart-form-title">Замовити</div>
+          <div class="form-group">
+            <label for="fullName" class="form-label">Прізвище*</label>
+            <input type="text" id="fullName" class="form-control" required/>
+          </div>
+          <div class="form-group">
+            <label for="name" class="form-label">Ім’я*</label>
+            <input type="text" id="name" class="form-control" required/>
+          </div>
+          <div class="form-group">
+            <label for="tel" class="form-label">Телефон*</label>
+            <input type="tel" id="tel" class="form-control" placeholder="+380" required/>
+          </div>
+          <div class="form-group">
+            <label for="email" class="form-label">E-mail*</label>
+            <input type="email" id="email" class="form-control" required/>
+          </div>
+          <div class="form-group">
+            <div class="form-label">Варіант доставки*</div>
+            <div class="form-select-wrapper">
+              <select class="form-select">
+                <option value="NewPost">Нова Пошта - На відділення</option>
+                <option value="NewPost2">Нова Пошта2 - На відділення</option>
+                <option value="NewPost3">Нова Пошта3 - На відділення</option>
+                <option value="NewPost4">Нова Пошта4 - На відділення</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-promo">
+            <div class="form-group">
+              <label for="email" class="form-label">Промокод</label>
+              <input type="email" id="email" class="form-control"/>
+            </div>
+            <button class="button button-solid">Активувати</button>
+          </div>
+          <div class="form-group">
+            <div class="form-label">Область*</div>
+            <div class="form-select-wrapper">
+              <select class="form-select">
+                <option value="state">Харківська</option>
+                <option value="state2">Київська</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label">Місто*</div>
+            <div class="form-select-wrapper">
+              <select class="form-select">
+                <option value="city">Харків</option>
+                <option value="city2">Київ</option>
+                <option value="city3">Одеса</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label">Відділення*</div>
+            <div class="form-select-wrapper">
+              <select class="form-select">
+                <option value="post">Відділення 1</option>
+                <option value="post2">Відділення 2</option>
+                <option value="post3">Відділення 3</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-label">Спосіб оплати*</div>
+          <div class="filter-content-box">
+            <label class="control">
+              <input type="radio" name="filter-group" />
+              <span class="control-radio"></span>
+              Післяплата на пошті
+            </label>
+            <label class="control">
+              <input type="radio" name="filter-group" />
+              <span class="control-radio"></span>
+              LiqPay
+            </label>
+          </div>
+        </div>
+        <div class="cart-form-order">
+          <div class="cart-form-title">Замовити</div>
+          <div class="cart-form-total">2000 ₴</div>
+          <button class="button button-solid-secondary">Замовити</button>
+          <a href="/" class="button button-outlined">Продовжити покупки</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,34 @@
+@use '../../../assets/styles/main.scss';
+@use '../../../assets/styles/abstracts/variables' as *;
+
+.thanks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $primary-default;
+  flex: 1 1 auto;
+
+  .title-section {
+    height: 148px;
+
+    @media (min-width: 768px) {
+      height: 248px;
+    }
+
+    .bg-wave {
+      height: 148px;
+
+      @media (min-width: 768px) {
+        height: 248px;
+      }
+    }
+  }
+}
+
+.thanks-content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
