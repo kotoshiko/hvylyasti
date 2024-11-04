@@ -1,4 +1,8 @@
-#
-.htaccess
-config.php
-admin/config.php
+# Configuration
+wp-config.php
+# Uploads
+/wp-content/uploads/
+# Log files
+*.log
+# htaccess
+/.htaccess
