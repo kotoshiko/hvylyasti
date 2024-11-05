@@ -1,5 +1,6 @@
-@use '../../../assets/styles/main.scss';
+// @use '../../../assets/styles/main.scss';
 @use '../../../assets/styles/abstracts/variables' as *;
+@use '../../../assets/styles/abstracts/breakpoints' as *;
 
 .error-page {
   display: flex;

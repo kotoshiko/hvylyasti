@@ -32,3 +32,15 @@
 @use  '../../assets/styles/UI/offers';
 @use  '../../assets/styles/UI/taste';
 @use '../../assets/styles/UI/icons';
+
+//Pages
+@use '../../views/pages/404/style.scss';
+@use '../../views/pages/about/about.scss';
+@use '../../views/pages/cart/cart.scss';
+@use '../../views/pages/catalog/catalog.scss';
+@use '../../views/pages/collect-box/collect-box.scss';
+@use '../../views/pages/delivery/delivery.scss';
+@use '../../views/pages/home/home.scss';
+@use '../../views/pages/partners/partners.scss';
+@use '../../views/pages/thanks/thanks.scss';
+@use '../../views/pages/vergocy/vergocy.scss';
