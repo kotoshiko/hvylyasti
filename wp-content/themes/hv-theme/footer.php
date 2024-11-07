@@ -4,7 +4,7 @@
 	<img src="/wp-content/themes/hv-theme/assets/images/footer-wawe.svg" alt="">
 	<div class="footer-top">
 		<div class="footer-top-content">
-			<a class="navigation-logo" href="index.html">
+			<a class="navigation-logo" href="/">
 				<img class="navigation-logo" src="/wp-content/themes/hv-theme/assets/images/app-logo.svg" />
 			</a>
 			<div class="footer-top-grid">
