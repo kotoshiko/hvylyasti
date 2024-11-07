@@ -10,10 +10,9 @@
 		<a class="navigation-nav-link" href="delivery.html">Доставка та оплата</a>
 	</div>
 	<div class="navigation-action">
-		<a href="http://"></a>
-		<button class="button button-solid-secondary">
+		<a href="/" class="button button-solid-secondary">
 			<img src="/wp-content/themes/hv-theme/assets/images/icons/shopping-cart-box.svg" alt="" />
 			замовити
-		</button>
+		</a>
 	</div>
 </nav>

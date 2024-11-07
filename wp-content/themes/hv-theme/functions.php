@@ -17,6 +17,6 @@ add_action( 'after_setup_theme', 'hv_theme_setup' );
 
 function hv_theme_scripts() {
 	wp_enqueue_style('hv-style', get_stylesheet_directory_uri() . '/assets/main.css', array(), '1.0', 'all');
-	wp_enqueue_script( 'main-script', get_template_directory_uri() . 'assets/js/main.js', array('jquery'), '1.0', true );
+	wp_enqueue_script( 'main-script', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'hv_theme_scripts' );
