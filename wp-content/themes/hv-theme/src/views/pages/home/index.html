@@ -1,24 +1,78 @@
-{% extends "src/views/layouts/default.html" %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 
-<!-- set variables used in layout -->
-{% set title="Home" %}
+  <head>
+    <title>Home</title>
 
-{% block styles %}
-<!-- load specific page style -->
-<link href="./home.scss" rel="stylesheet">
-{% endblock %}
+    <!-- load source favicon via Webpack alias '@images' -->
+    <link href="@images/favicon.png" rel="icon" type="image/png">
 
-{% block scripts %}
-<!-- load specific page script -->
-<script src="./home.js"></script>
-{% endblock %}
+    <!-- load global source script via Webpack alias '@scripts' -->
+    <script src="@scripts/common.js" defer="defer"></script>
+    <script src="./home.js"></script>
 
-{% block content %}
-<section>
-  <div class="container flex-column center-x">
-    <h1>Home</h1>
-    <div class="teaser">Multipage hvylyasti app.</div>
-    <img class="home-image" src="@images/benefit.png">
-  </div>
-</section>
-{% endblock %}
+    <!-- block for specific page styles -->
+    <link href="./style.scss" rel="stylesheet">
+  </head>
+
+  <body id="app">
+    <!-- Header -->
+    {% include "src/views/partials/header/header.html" %}
+
+    <!-- Main content -->
+    <main class="main-container">
+      <div class="home flex-column center-x">
+        <section class="welcome-section">
+          <div class="welcome-section-content">
+            <div class="welcome-section-info">
+              <div class="welcome-section-text">
+                <h1 class="title welcome-section-title">Збери свій <br> ящик смаків</h1>
+                <div class="welcome-section-icons">
+                  <img src="@images/home/welcome-icon.svg" alt="icon">
+                  <p>12+ смаків на вибір</p>
+                </div>
+                <div class="welcome-section-action">
+                  <a href="/" class="button button-solid">Купити
+                    <span class="icon-arrow">
+                      <img src="@images/icons/button-arrow.svg" alt="">
+                    </span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+            <div class="welcome-section-video">
+              <video src="../../../assets/videos/main_comp.mp4" autoplay loop muted></video>
+            </div>
+          </div>
+          <img src="@images/home/home_white_wawe.svg" class="welcome-section-white-wave" alt="" />
+        </section>
+
+        <div class="properties-section">
+          <div class="main-content">
+            <div class="properties-section-container">
+              <img class="home-image" src="@images/benefit.png">
+            </div>
+          </div>
+        </div>
+        <div class="trends-section">
+          <div class="main-content">
+            <div class="properties-section-container">
+              <img class="home-image" src="@images/benefit.png">
+            </div>
+          </div>
+        </div>
+        <div class=".social-marketing-section">
+          <div class="main-content">
+            <div class="properties-section-container">
+              <img class="home-image" src="@images/benefit.png">
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Footer -->
+    {% include "src/views/partials/footer/footer.html" %}
+  </body>
+
+</html>
