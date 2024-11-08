@@ -1,24 +1,107 @@
-{% extends "src/views/layouts/default.html" %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 
-<!-- set variables used in layout -->
-{% set title="Home" %}
+  <head>
+    <title>Home</title>
 
-{% block styles %}
-<!-- load specific page style -->
-<link href="./style.scss" rel="stylesheet">
-{% endblock %}
+    <!-- load source favicon via Webpack alias '@images' -->
+    <link href="@images/favicon.png" rel="icon" type="image/png">
 
-{% block scripts %}
-<!-- load specific page script -->
-<script src="./home.js"></script>
-{% endblock %}
+    <!-- load global source script via Webpack alias '@scripts' -->
+    <script src="@scripts/common.js" defer="defer"></script>
+    <script src="./home.js"></script>
 
-{% block content %}
-<section>
-  <div class="container flex-column center-x">
-    <h1>Home</h1>
-    <div class="teaser">Multipage hvylyasti app.</div>
-    <img class="home-image" src="@images/benefit.png">
-  </div>
-</section>
-{% endblock %}
+    <!-- block for specific page styles -->
+    <link href="./style.scss" rel="stylesheet">
+  </head>
+
+  <body id="app">
+    <!-- Header -->
+    {% include "src/views/partials/header/header.html" %}
+
+    <!-- Main content -->
+    <main class="main-container">
+      <div class="home">
+        <div class="welcome-section">
+          <div class="welcome-section-content">
+            <div class="welcome-section-info">
+              <img src="@images/home/welcome-shape.svg" class="welcome-section-shape" alt="icon">
+              <div class="welcome-section-inner">
+                <div class="welcome-section-text">
+                  <h1 class="title welcome-section-title">Збери свій <br> ящик смаків</h1>
+                  <div class="welcome-section-icons">
+                    <img src="@images/home/welcome-icon.svg" alt="icon">
+                    <p>12+ смаків на вибір</p>
+                  </div>
+                  <div class="welcome-section-action">
+                    <a href="/" class="button button-solid">Купити
+                      <span class="icon-arrow">
+                        <img src="@images/icons/button-arrow.svg" alt="">
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <img src="@images/home/home_white_wawe.svg" class="welcome-section-white-wave" alt="" />
+            </div>
+            <div class="welcome-section-video">
+              <video src="../../../assets/videos/main_comp.mp4" autoplay loop muted></video>
+            </div>
+          </div>
+        </div>
+
+        <div class="properties-section">
+          <div class="home-content main-content">
+            <h2 class="title">Грінки Хвилясті</h2>
+            <div class="properties-section-container">
+              <img class="home-image" src="@images/benefit.png">
+            </div>
+          </div>
+        </div>
+
+        <div class="trends-section">
+          <img src="@images/home/section_white_wawe.svg" class="section-white-wawe" alt="wawe">
+          <div class="home-content main-content">
+            <h2 class="title">Тренди</h2>
+            <div class="trends-section-container">
+              <img class="home-image" src="@images/benefit.png">
+            </div>
+            <a href="/" class="button button-solid-secondary">Скласти власний бокс</a>
+          </div>
+        </div>
+
+        <div class="social-marketing-section">
+          <img src="@images/home/section_grey_wawe.svg" class="section-white-wawe" alt="wawe">
+          <div class="home-content main-content">
+            <h2 class="title">Про нас</h2>
+            <p class="home-section-text">Свіжий житньо-пшеничний хліб, унікальна форма, приправи, що виготовлені на
+              натуральній основі або натуральних ароматизаторах, а також створення продукції ручним способом — усе це
+              вирізняє Хвилясті серед інших.</p>
+            <div class="social-marketing-section-container">
+              <img class="home-image" src="@images/benefit.png">
+            </div>
+            <a href="/" class="button button-outlined">Дізнатися більше</a>
+          </div>
+        </div>
+
+        <div class="video-section">
+          <img src="@images/home/section_white_wawe.svg" class="section-white-wawe" alt="wawe">
+          <div class="home-content main-content">
+            <h2 class="title">Для партнерів</h2>
+            <p class="home-section-text">Наш продукт є ваговим. Кожен ящик містить 12 порцій, розташованих в два яруси.
+              В одній порції 7 – 12 грінок, вага яких 75 г, в залежності від розміру хліба. Продукція ручної праці дає
+              можливість отримати продукт найвищої якості в широкому асортименті.</p>
+            <div class="video-section-container">
+              <video src="../../../assets/videos/main_comp.mp4" autoplay loop muted controls></video>
+            </div>
+            <a href="/" class="button button-solid">Заявка на співпрацю</a>
+          </div>
+        </div>
+        
+      </div>
+    </main>
+    <!-- Footer -->
+    {% include "src/views/partials/footer/footer.html" %}
+  </body>
+
+</html>

@@ -141,6 +141,14 @@ module.exports = {
           },
         ],
       },
+      // load images from `images` directory only
+      {
+        test: /\.(mp4|webm|ogg)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/videos/[name].[hash:8][ext]',
+        },
+      }
     ],
   },
 
