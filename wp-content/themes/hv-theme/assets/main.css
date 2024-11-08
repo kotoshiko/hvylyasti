@@ -1155,12 +1155,14 @@ input:checked + .toggle:before {
 }
 
 .footer-container {
+  position: relative;
   width: 100%;
   color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 10;
 }
 .footer-container img,
 .footer-container svg {
@@ -1995,7 +1997,27 @@ input:checked + .toggle:before {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-bottom: 120px;
+}
+
+.home-content {
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 40px;
+}
+
+.home-section-text {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #0e0e0e;
+  max-width: 768px;
+  text-align: center;
+  margin: 0 auto 80px;
+}
+
+.section-white-wawe {
+  width: 100%;
+  height: auto;
 }
 
 .welcome-section {
@@ -2082,7 +2104,7 @@ input:checked + .toggle:before {
   position: relative;
   width: 64%;
   height: 0;
-  padding-bottom: 36.25%;
+  padding-bottom: 40.25%;
   margin-left: auto;
   overflow: hidden;
 }
@@ -2102,6 +2124,68 @@ input:checked + .toggle:before {
   width: 100%;
   height: auto;
   z-index: 2;
+}
+
+.properties-section {
+  width: 100%;
+  background-color: #fff;
+  padding-bottom: 24px;
+}
+
+.trends-section {
+  width: 100%;
+  padding-bottom: 24px;
+}
+
+.trends-section-container {
+  margin-bottom: 40px;
+}
+
+.social-marketing-section {
+  width: 100%;
+  background-color: #fff;
+  padding-bottom: 24px;
+}
+
+.social-marketing-section-container {
+  margin-bottom: 40px;
+}
+
+.video-section {
+  width: 100%;
+  padding-bottom: 8%;
+  margin-bottom: -4%;
+  background-image: url("/wp-content/themes/hv-theme/assets/images/home/home_yellow_wawe.svg");
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+.video-section .video-section-container {
+  position: relative;
+  margin: 0 auto 48px;
+  width: 100%;
+  max-width: 800px;
+  height: 0;
+  max-height: 450px;
+  padding-bottom: 56.25%;
+  background-color: #9EBFD0;
+  border-radius: 16px;
+}
+@media (min-width: 768px) {
+  .video-section .video-section-container {
+    padding-bottom: 49.2%;
+  }
+}
+@media (min-width: 992px) {
+  .video-section .video-section-container {
+    padding-bottom: 40.35%;
+  }
+}
+.video-section video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .partners {
