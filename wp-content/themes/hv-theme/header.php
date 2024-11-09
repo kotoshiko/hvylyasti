@@ -22,6 +22,6 @@ wp_head();
 		</a>
 	</div>
 	<div class="header-bottom">
-						<?php get_template_part('parts/navigation')?>
+						<?php // get_template_part('parts/navigation')?>
 	</div>
 </div>

@@ -43,4 +43,5 @@
 		<span class="copyright"></span> &nbsp; Хвилясті 2024
 	</div>
 </div>
+</body>
 <?php wp_footer();?>
