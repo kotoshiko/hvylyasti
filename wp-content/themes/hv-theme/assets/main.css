@@ -2259,4 +2259,33 @@ input:checked + .toggle:before {
   cursor: pointer;
 }
 
+#cart-preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner svg {
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    stroke-dashoffset: 200;
+    transform: rotate(0deg);
+  }
+  100% {
+    stroke-dashoffset: 0;
+    transform: rotate(360deg);
+  }
+}
+
+
 /*# sourceMappingURL=main.css.map */
