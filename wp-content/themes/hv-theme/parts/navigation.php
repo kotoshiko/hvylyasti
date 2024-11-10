@@ -17,7 +17,7 @@
 	}
 	?>
 	<div class="navigation-action">
-		<a href="/" class="button button-solid-secondary">
+		<a href="/cart" class="button button-solid-secondary">
 			<img src="/wp-content/themes/hv-theme/assets/images/icons/shopping-cart-box.svg" alt="" />
 			кошик
 		</a>

@@ -107,6 +107,74 @@ class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
 	}
 }
 
+function render_primary_menu() {
+	$locations = get_nav_menu_locations();
+	if ( isset( $locations['primary'] ) ) {
+		$menu = wp_get_nav_menu_items( $locations['primary'] );
+
+		if ( !empty( $menu ) ) {
+			echo '<div class="header-top">';
+			foreach ( $menu as $menu_item ) {
+				$icon = '';
+				if ( in_array( 'menu-instagram', $menu_item->classes ) ) {
+					$icon = get_template_directory_uri() . '/assets/images/icons/contacts/instagram.svg';
+				} elseif ( in_array( 'menu-facebook', $menu_item->classes ) ) {
+					$icon = get_template_directory_uri() . '/assets/images/icons/contacts/facebook.svg';
+				} elseif ( in_array( 'menu-mail', $menu_item->classes ) ) {
+					$icon = get_template_directory_uri() . '/assets/images/icons/contacts/mail.svg';
+				} elseif ( in_array( 'menu-phone', $menu_item->classes ) ) {
+					$icon = get_template_directory_uri() . '/assets/images/icons/contacts/phone.svg';
+				}
+
+				echo '<a class="header-top-link" href="' . esc_url( $menu_item->url ) . '" target="_blank" rel="noopener noreferrer">
+                    <img src="' . esc_url( $icon ) . '" alt="" />
+                    <span class="header-top-link-text">' . esc_html( $menu_item->title ) . '</span>
+                </a>';
+			}
+			echo '</div>';
+		}
+	}
+}
+
+class Footer_Menu_Walker extends Walker_Nav_Menu {
+
+	public function start_lvl( &$output, $depth = 0, $args = null ) {
+		// Уровень вложенности не используется, так как меню плоское.
+	}
+
+	public function end_lvl( &$output, $depth = 0, $args = null ) {
+		// Закрытие уровня вложенности, если бы он использовался.
+	}
+
+	public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
+		$icon = '';
+
+		if ( in_array( 'menu-instagram', $item->classes ) ) {
+			$icon = get_template_directory_uri() . '/assets/images/icons/contacts/instagram_white.svg';
+		} elseif ( in_array( 'menu-facebook', $item->classes ) ) {
+			$icon = get_template_directory_uri() . '/assets/images/icons/contacts/facebook_white.svg';
+		} elseif ( in_array( 'menu-mail', $item->classes ) ) {
+			$icon = get_template_directory_uri() . '/assets/images/icons/contacts/mail_white.svg';
+		} elseif ( in_array( 'menu-phone', $item->classes ) ) {
+			$icon = get_template_directory_uri() . '/assets/images/icons/contacts/phone_white.svg';
+		}
+
+		$output .= '<a class="footer-top-link" href="' . esc_url( $item->url ) . '" target="_blank" rel="noopener noreferrer">';
+
+		if ( $icon ) {
+			$output .= '<img src="' . esc_url( $icon ) . '" alt="" />';
+		}
+
+		$output .= '<span class="footer-top-link-text">' . esc_html( $item->title ) . '</span></a>';
+	}
+
+	public function end_el( &$output, $item, $depth = 0, $args = null ) {
+		// Закрытие элемента меню.
+	}
+}
+
+
+
 
 
 
