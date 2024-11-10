@@ -4,11 +4,18 @@
 	<a class="navigation-logo" href="/">
 		<img class="navigation-logo" src="/wp-content/themes/hv-theme/assets/images/app-logo.svg" />
 	</a>
-	<div class="navigation-nav">
-		<a class="navigation-nav-link" href="about">Про нас</a>
-		<a class="navigation-nav-link" href="partners">Для партнерів</a>
-		<a class="navigation-nav-link" href="delivery">Доставка та оплата</a>
-	</div>
+	<?php
+	if ( has_nav_menu( 'header-menu' ) ) {
+		wp_nav_menu( array(
+			'theme_location' => 'header-menu',
+			'container' => 'div',
+			'container_class' => 'navigation-nav',
+			'menu_class' => '', // убираем лишние классы от WP
+			'walker' => new Custom_Walker_Nav_Menu(), // используем наш walker
+	  	'items_wrap' => '%3$s', // убираем ul
+		) );
+	}
+	?>
 	<div class="navigation-action">
 		<a href="/" class="button button-solid-secondary">
 			<img src="/wp-content/themes/hv-theme/assets/images/icons/shopping-cart-box.svg" alt="" />
