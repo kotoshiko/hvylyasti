@@ -7,6 +7,9 @@ function hv_theme_setup() {
 	// Регистрация меню
 	register_nav_menus( array(
 		'primary' => __( 'Primary Menu', 'my-custom-theme' ),
+		'header-menu' => __( 'Header Menu', 'my-custom-theme' ), // Меню для хедера
+		'footer-menu-1' => __( 'Footer Menu 1', 'my-custom-theme' ), // Первое меню для футера
+		'footer-menu-2' => __( 'Footer Menu 2', 'my-custom-theme' ), // Второе меню для футера
 	) );
 
 	// Поддержка WooCommerce
@@ -85,7 +88,24 @@ if ( ! class_exists( 'Hv_Plus_Minus' ) ) {
 }
 Hv_Plus_Minus::get_instance();
 
+//menu walker class
+class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
+	function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
+		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
+		$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) );
+		$class_names = $class_names ? ' class="navigation-nav-link ' . esc_attr( $class_names ) . '"' : ' class="navigation-nav-link"';
 
+		$attributes  = ! empty( $item->url ) ? ' href="' . esc_url( $item->url ) . '"' : '';
+
+		$output .= '<a' . $attributes . $class_names . '>';
+		$output .= apply_filters( 'the_title', $item->title, $item->ID );
+		$output .= '</a>';
+	}
+
+	function end_el( &$output, $item, $depth = 0, $args = null ) {
+		$output .= "\n";
+	}
+}
 
 
 
