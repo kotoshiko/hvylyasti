@@ -2286,6 +2286,16 @@ input:checked + .toggle:before {
     transform: rotate(360deg);
   }
 }
+ .hv-quantity input[type="number"] {
+   -webkit-appearance: textfield;
+   -moz-appearance: textfield;
+   appearance: textfield;
+ }
+.hv-quantity input[type=number]::-webkit-inner-spin-button,
+.hv-quantity input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
 
 
 /*# sourceMappingURL=main.css.map */
