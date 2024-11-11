@@ -174,6 +174,18 @@ class Footer_Menu_Walker extends Walker_Nav_Menu {
 }
 
 
+function hv_enqueue_swiper() {
+	// Подключение Swiper CSS
+	wp_enqueue_style( 'swiper-css', get_template_directory_uri() . '/assets/vendor/swiper/swiper-bundle.min.css', array(), '8.4.5' );
+
+	// Подключение Swiper JS
+	wp_enqueue_script( 'swiper-js', get_template_directory_uri() . '/assets/vendor/swiper/swiper-bundle.min.js', array(), '8.4.5', true );
+
+	// Подключение Вашего Скрипта для Инициализации Swiper
+	wp_enqueue_script( 'hv-swiper-init', get_template_directory_uri() . '/assets/js/swiper-init.js', array( 'swiper-js' ), '1.0', true );
+}
+add_action( 'wp_enqueue_scripts', 'hv_enqueue_swiper' );
+
 
 
 
