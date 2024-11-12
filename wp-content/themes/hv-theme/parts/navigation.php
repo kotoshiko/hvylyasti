@@ -21,5 +21,11 @@
 			<img src="/wp-content/themes/hv-theme/assets/images/icons/shopping-cart-box.svg" alt="" />
 			кошик
 		</a>
+
+		<button class="burger-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 	</div>
 </nav>

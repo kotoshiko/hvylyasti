@@ -1,4 +1,5 @@
 @use '../abstracts/variables' as *;
+@use '../abstracts/breakpoints' as *;
 
 .navigation {
   color: $primary-default;
@@ -6,23 +7,35 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: 2em;
+  gap: 1em;
+
+  @media (min-width: $breakpoints-md) {
+    gap: 2em;
+  }
 }
 
 .navigation-logo {
-  max-height: 64px;
+  max-height: 48px;
   height: 100%;
+
+  @media (min-width: $breakpoints-md) {
+    max-height: 64px;
+  }
 }
 
 .navigation-nav {
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
-  display: flex;
+  display: none;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 2em;
+
+  @media (min-width: $breakpoints-md) {
+    display: flex;
+  }
 }
 
 .navigation-nav-link {
@@ -52,7 +65,94 @@
 }
 
 .navigation-action {
-  .button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  .button-nav-cart {
     height: 48px;
   }
+
+  .burger-btn {
+    height: 48px;
+    width: 48px;
+    color: $primary-default;
+    border: 1px solid $primary-default;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    cursor: pointer;
+
+    @media (min-width: $breakpoints-md) {
+      display: none;
+    }
+
+    span {
+      width: 74%;
+      height: 2px;
+      border-radius: 16px;
+      background-color: $primary-default;
+      margin: 2px;
+      transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+        background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+        opacity 0.55s ease;
+    }
+
+    &.open {
+      span {
+        opacity: 1;
+        transform: rotate(45deg) translate(-4px, -4px);
+        background: #232323;
+      }
+
+      span:nth-last-child(2) {
+        transform: rotate(-45deg) translate(0, 0);
+      }
+
+      span:nth-last-child(3) {
+        opacity: 0;
+        transform: rotate(0deg) scale(0.2, 0.2);
+      }
+    }
+  }
+}
+
+.navigation-mobile {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 100px 24px 24px;
+  overflow-y: auto;
+  z-index: 80;
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+
+  @media (min-width: $breakpoints-md) {
+    display: none;
+  }
+
+  &.open {
+    transform: none;
+  }
+}
+
+.divider {
+  width: 100%;
+  height: 2px;
+  border-radius: 16px;
+  background-color: $light-grey;
+  margin: 24px 0;
 }
