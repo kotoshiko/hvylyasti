@@ -10,9 +10,9 @@
 			'theme_location' => 'header-menu',
 			'container' => 'div',
 			'container_class' => 'navigation-nav',
-			'menu_class' => '', // убираем лишние классы от WP
-			'walker' => new Custom_Walker_Nav_Menu(), // используем наш walker
-	  	'items_wrap' => '%3$s', // убираем ul
+			'menu_class' => '',
+			'walker' => new Custom_Walker_Nav_Menu(),
+	  	'items_wrap' => '%3$s',
 		) );
 	}
 	?>
