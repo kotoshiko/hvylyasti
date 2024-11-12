@@ -17,10 +17,24 @@ function hv_theme_setup() {
 }
 add_action( 'after_setup_theme', 'hv_theme_setup' );
 
+function hv_enqueue_swiper() {
+	// Подключение Swiper CSS
+	wp_enqueue_style( 'swiper-css', get_template_directory_uri() . '/assets/vendor/swiper/swiper-bundle.min.css', array(), '8.4.5' );
+
+	// Подключение Swiper JS
+	wp_enqueue_script( 'swiper-js', get_template_directory_uri() . '/assets/vendor/swiper/swiper-bundle.min.js', array(), '8.4.5', true );
+
+	// Подключение Вашего Скрипта для Инициализации Swiper
+	wp_enqueue_script( 'hv-swiper-init', get_template_directory_uri() . '/assets/js/swiper-init.js', array( 'swiper-js' ), '1.0', true );
+}
+add_action( 'wp_enqueue_scripts', 'hv_enqueue_swiper' );
+
 
 function hv_theme_scripts() {
 	wp_enqueue_style('hv-style', get_stylesheet_directory_uri() . '/assets/main.css', array(), '1.0', 'all');
 	wp_enqueue_script( 'main-script', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0', true );
+	wp_enqueue_script( 'burger-button-script', get_template_directory_uri() . '/assets/js/burger-button.js', array(), '1.0', true );
+	wp_enqueue_script( 'trends-section-tabs-script', get_template_directory_uri() . '/assets/js/trends-section-tabs.js', array(), '1.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'hv_theme_scripts' );
 
@@ -172,32 +186,3 @@ class Footer_Menu_Walker extends Walker_Nav_Menu {
 		// Закрытие элемента меню.
 	}
 }
-
-
-function hv_enqueue_swiper() {
-	// Подключение Swiper CSS
-	wp_enqueue_style( 'swiper-css', get_template_directory_uri() . '/assets/vendor/swiper/swiper-bundle.min.css', array(), '8.4.5' );
-
-	// Подключение Swiper JS
-	wp_enqueue_script( 'swiper-js', get_template_directory_uri() . '/assets/vendor/swiper/swiper-bundle.min.js', array(), '8.4.5', true );
-
-	// Подключение Вашего Скрипта для Инициализации Swiper
-	wp_enqueue_script( 'hv-swiper-init', get_template_directory_uri() . '/assets/js/swiper-init.js', array( 'swiper-js' ), '1.0', true );
-}
-add_action( 'wp_enqueue_scripts', 'hv_enqueue_swiper' );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
