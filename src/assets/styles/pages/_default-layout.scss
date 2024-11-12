@@ -44,7 +44,7 @@ section {
   align-items: center;
   justify-content: center;
   height: 248px;
-  
+
   @media (min-width: 768px) {
     height: 320px;
   }
@@ -56,7 +56,7 @@ section {
     top: 0;
     left: 0;
     height: 248px;
-  
+
     @media (min-width: 768px) {
       height: 320px;
     }
@@ -68,3 +68,40 @@ section {
   }
 }
 
+.swiper {
+  width: 100%;
+  height: fit-content;
+  background-color: transparent;
+  padding: 14px;
+}
+
+.swiper-slide {
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hv-swiper-button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid $primary-default;
+  border-radius: 50%;
+  background-color: $white;
+
+  &::after {
+    font-size: 16px;
+    font-weight: bold;
+    color: $primary-default;
+  }
+
+  &.swiper-button-next {
+    right: -40px;
+  }
+
+  &.swiper-button-prev {
+    left: -40px;
+  }
+}
