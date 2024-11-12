@@ -186,3 +186,23 @@ class Footer_Menu_Walker extends Walker_Nav_Menu {
 		// Закрытие элемента меню.
 	}
 }
+
+class Mobile_Footer_Menu_Walker extends Walker_Nav_Menu {
+	public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
+		$output .= '<a class="header-top-link" href="' . esc_url( $item->url ) . '"';
+
+		if ( ! empty( $item->target ) ) {
+			$output .= ' target="' . esc_attr( $item->target ) . '"';
+		}
+
+		if ( ! empty( $item->xfn ) ) {
+			$output .= ' rel="' . esc_attr( $item->xfn ) . '"';
+		}
+
+		$output .= '>';
+
+		// Выводим текст ссылки
+		$output .= '<span class="header-top-link-text">' . apply_filters( 'the_title', $item->title, $item->ID ) . '</span>';
+		$output .= '</a>';
+	}
+}
