@@ -6,17 +6,20 @@ function hv_theme_setup() {
 
 	// Регистрация меню
 	register_nav_menus( array(
-		'primary' => __( 'Primary Menu', 'my-custom-theme' ),
-		'header-menu' => __( 'Header Menu', 'my-custom-theme' ), // Меню для хедера
-		'footer-menu-1' => __( 'Footer Menu 1', 'my-custom-theme' ), // Первое меню для футера
-		'footer-menu-2' => __( 'Footer Menu 2', 'my-custom-theme' ), // Второе меню для футера
+		'primary' => __( 'Primary Menu', 'hv-theme' ),
+		'header-menu' => __( 'Header Menu', 'hv-theme' ), // Меню для хедера
+		'footer-menu-1' => __( 'Footer Menu 1', 'hv-theme' ), // Первое меню для футера
+		'footer-menu-2' => __( 'Footer Menu 2', 'hv-theme' ), // Второе меню для футера
 	) );
 
 	// Поддержка WooCommerce
 	add_theme_support( 'woocommerce' );
 }
 add_action( 'after_setup_theme', 'hv_theme_setup' );
-
+//remove woocommerce breadcrumbs
+remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+//remove woocommerce default sorting
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
 function hv_enqueue_swiper() {
 	// Подключение Swiper CSS
 	wp_enqueue_style( 'swiper-css', get_template_directory_uri() . '/assets/vendor/swiper/swiper-bundle.min.css', array(), '8.4.5' );
@@ -187,7 +190,7 @@ class Footer_Menu_Walker extends Walker_Nav_Menu {
 	}
 }
 
-class Mobile_Footer_Menu_Walker extends Walker_Nav_Menu {
+class Mobile_Primary_Menu_Walker extends Walker_Nav_Menu {
 	public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
 		$output .= '<a class="header-top-link" href="' . esc_url( $item->url ) . '"';
 
@@ -206,3 +209,23 @@ class Mobile_Footer_Menu_Walker extends Walker_Nav_Menu {
 		$output .= '</a>';
 	}
 }
+
+class Mobile_Header_Walker extends Walker_Nav_Menu {
+	public function start_lvl( &$output, $depth = 0, $args = null ) {
+	}
+
+	public function end_lvl( &$output, $depth = 0, $args = null ) {
+	}
+
+	public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
+		$output .= sprintf(
+			'<a class="navigation-nav-link" href="%s">%s</a>',
+			esc_url( $item->url ),
+			apply_filters( 'the_title', $item->title, $item->ID )
+		);
+	}
+
+	public function end_el( &$output, $item, $depth = 0, $args = null ) {
+	}
+}
+

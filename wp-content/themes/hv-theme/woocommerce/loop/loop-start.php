@@ -1,8 +1,8 @@
 <?php
 /**
- * Content wrappers
+ * Product Loop Start
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/global/wrapper-start.php.
+ * This template can be overridden by copying it to yourtheme/woocommerce/loop/loop-start.php.
  *
  * HOWEVER, on occasion WooCommerce will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -14,5 +14,9 @@
  * @package     WooCommerce\Templates
  * @version     3.3.0
  */
-?>
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
+<ul class="catalog-list">

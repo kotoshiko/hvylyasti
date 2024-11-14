@@ -1,6 +1,8 @@
 <?php
 get_header();
 ?>
+	<main class="main-container">
+	<div class="main-content">
 	<section class="catalog">
 		<div class="container">
 			<h1 class="catalog-title">інтернет магазин “хвилясті”</h1>
@@ -20,6 +22,8 @@ get_header();
 							do_action( 'woocommerce_shop_loop' );
 
 							wc_get_template_part( 'content', 'product' );
+				global $product;
+				echo $product->get_attribute( 'pa_smaky' );
 						}
 					}
 
@@ -29,11 +33,12 @@ get_header();
 					do_action( 'woocommerce_no_products_found' );
 				}
 				?>
-					<?php get_template_part('parts/card', 'item')?>
 				<?php do_action( 'woocommerce_after_main_content' );?>
 			</div>
 		</div>
 	</section>
+	</div>
+	</main>
 <?php
 get_footer(); ?>
 
