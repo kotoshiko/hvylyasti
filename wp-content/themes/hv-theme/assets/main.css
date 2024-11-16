@@ -2872,4 +2872,7 @@ input:checked + .toggle:before {
   cursor: pointer;
 }
 
+.product.woocommerce.add_to_cart_inline {
+  border: 0 !important;
+}
 /*# sourceMappingURL=main.css.map */

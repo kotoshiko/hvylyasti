@@ -265,15 +265,29 @@ function custom_add_to_cart_in_sidebar() {
 	if ( is_shop() || is_product_category() || is_product_tag() ) {
 		global $wp_query;
 
-		// Получить первый товар на текущей странице
+		// get first item on the page
 		$products = $wp_query->posts;
 
 		if ( ! empty( $products ) ) {
 			$first_product_id = $products[0]->ID;
 
-			echo '<div class="custom-sidebar-add-to-cart">';
+			echo '<button class="button button-solid-secondary">';
 			echo do_shortcode( '[add_to_cart id="' . esc_attr( $first_product_id ) . '"]' );
-			echo '</div>';
+			echo '</button>';
 		}
 	}
 }
+
+
+add_action( 'woocommerce_before_main_content', function() {
+	if ( is_shop() || is_product_category() ) {
+		// Убираем название
+		remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );
+
+		// Убираем цену
+		remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
+
+		// Убираем кнопку "Добавить в корзину"
+		remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
+	}
+} );

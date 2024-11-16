@@ -75,9 +75,15 @@
 			<div class="filter-header active">
 				<span class="filter-title">Смак</span>
 			</div>
-			<?php if($current_category_slug === 'grinky') { ?>
 			<div class="filter-content tastes">
-				<div class="filter-content-label">Смаки грінок*</div>
+				<div class="filter-content-label">
+			<?php if ( $current_category_slug === 'grinky' ) {
+					 _e('Смаки грінок*', 'hv-theme');
+					 } else {
+		  _e( 'Смаки вергосів*', 'hv-theme' );
+	  }
+				?>
+				</div>
 				<div class="filter-content-box">
 			<?php
 			if ( $current_category_id ) {
@@ -112,46 +118,6 @@
 			?>
 				</div>
 			</div>
-			<?php } ?>
-		<?php if($current_category_slug === 'vergosy') { ?>
-			<div class="filter-content tastes">
-				<div class="filter-content-label">Смаки вергосів*</div>
-				<div class="filter-content-box">
-					<div class="filter-content-wrapper">
-						<label class="control">
-							<input type="checkbox" name="taste1" />
-							<span class="control-checkmark"></span>
-							<img src="/wp-content/themes/hv-theme/assets/images/icons/tastes/with-salt.svg" alt="" />
-						</label>
-						<div class="filter-content-title">З сіллю</div>
-					</div>
-					<div class="filter-content-wrapper">
-						<label class="control">
-							<input type="checkbox" name="taste1" />
-							<span class="control-checkmark"></span>
-							<img src="/wp-content/themes/hv-theme/assets/images/icons/tastes/onion-cream.png" alt="" />
-						</label>
-						<div class="filter-content-title">Цибуля-вершки</div>
-					</div>
-					<div class="filter-content-wrapper">
-						<label class="control">
-							<input type="checkbox" name="taste1" />
-							<span class="control-checkmark"></span>
-							<img src="/wp-content/themes/hv-theme/assets/images/icons/tastes/garlic-cream.png" alt="" />
-						</label>
-						<div class="filter-content-title">Часник-вершки</div>
-					</div>
-					<div class="filter-content-wrapper">
-						<label class="control">
-							<input type="checkbox" name="taste1" />
-							<span class="control-checkmark"></span>
-							<img src="/wp-content/themes/hv-theme/assets/images/icons/tastes/teriyaki-cream.png" alt="" />
-						</label>
-						<div class="filter-content-title">Теріякі-вершки</div>
-					</div>
-				</div>
-			</div>
-			<?php } ?>
 		</div>
 		<div class="filter sum">
 			<span class="filter-title">Загалом</span>
@@ -159,10 +125,8 @@
 				<span class="composition">Склад продукту</span>
 				<span class="value">Маса нетто - 900 г. (≈ 120 грінок)</span>
 			</button>
-			<button class="button button-solid-secondary">
 <!--				Замовити на 200 ₴-->
 				<?php custom_add_to_cart_in_sidebar();?>
-			</button>
 		</div>
 	</form>
 </aside>
