@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product;
 
 $aria_describedby = isset( $args['aria-describedby_text'] ) ? sprintf( 'aria-describedby="woocommerce_loop_add_to_cart_link_describedby_%s"', esc_attr( $product->get_id() ) ) : '';
-
+$args['class'] = 'button1 product_type_simple add_to_cart_button ajax_add_to_cart added';
 echo apply_filters(
 	'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
 	sprintf(
@@ -30,7 +30,7 @@ echo apply_filters(
 		esc_url( $product->add_to_cart_url() ),
 		$aria_describedby,
 		esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
-		esc_attr( isset( $args['class'] ) ? $args['class'] : 'button' ),
+		esc_attr( isset( $args['class'] ) ? $args['class'] : 'button1' ),
 		isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
 		esc_html( $product->add_to_cart_text() )
 	),
