@@ -22,8 +22,6 @@ get_header();
 							do_action( 'woocommerce_shop_loop' );
 
 							wc_get_template_part( 'content', 'product' );
-				global $product;
-				echo $product->get_attribute( 'pa_smaky' );
 						}
 					}
 
