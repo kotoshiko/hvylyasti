@@ -291,3 +291,44 @@ add_action( 'woocommerce_before_main_content', function() {
 		remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
 	}
 } );
+
+add_filter( 'woocommerce_add_cart_item_data', 'add_category_data_to_cart_item', 10, 3 );
+
+function add_category_data_to_cart_item( $cart_item_data, $product_id, $variation_id ) {
+	// Получить объект товара
+	$product = wc_get_product( $product_id );
+
+	// Получить категории текущего товара
+	$categories = wp_get_post_terms( $product_id, 'product_cat', array( 'fields' => 'names' ) );
+
+	// Если категории существуют, добавляем текущую категорию
+	if ( ! empty( $categories ) && is_array( $categories ) ) {
+		$cart_item_data['custom_category_data'] = $categories[0]; // Имя первой категории текущего товара
+	}
+
+	// Возвращаем модифицированные данные
+	return $cart_item_data;
+}
+
+
+add_action( 'woocommerce_checkout_create_order_line_item', 'add_custom_category_data_to_order', 10, 4 );
+
+function add_custom_category_data_to_order( $item, $cart_item_key, $values, $order ) {
+	if ( isset( $values['custom_category_data'] ) ) {
+		$item->add_meta_data( 'Смаки', $values['custom_category_data'], true );
+	}
+}
+
+/*add cart to checkout page*/
+
+add_action( 'woocommerce_before_checkout_form', 'bbloomer_cart_on_checkout_page', 5 );
+
+function bbloomer_cart_on_checkout_page() {
+	echo do_shortcode( '[woocommerce_cart]' );
+}
+
+add_filter( 'woocommerce_get_cart_url', 'bbloomer_redirect_empty_cart_checkout_to_shop' );
+
+function bbloomer_redirect_empty_cart_checkout_to_shop() {
+	return ( isset( WC()->cart ) && ! WC()->cart->is_empty() ) ? wc_get_checkout_url() : wc_get_page_permalink( 'shop' );
+}
