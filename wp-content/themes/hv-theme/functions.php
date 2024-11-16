@@ -38,6 +38,9 @@ function hv_theme_scripts() {
 	wp_enqueue_script( 'main-script', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0', true );
 	wp_enqueue_script( 'burger-button-script', get_template_directory_uri() . '/assets/js/burger-button.js', array(), '1.0', true );
 	wp_enqueue_script( 'trends-section-tabs-script', get_template_directory_uri() . '/assets/js/trends-section-tabs.js', array(), '1.0', true );
+	if (is_shop()){
+		wp_enqueue_script( 'hv-shop', get_template_directory_uri() . '/assets/js/shop.js', array(), '1.0', true );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'hv_theme_scripts' );
 
@@ -229,3 +232,48 @@ class Mobile_Header_Walker extends Walker_Nav_Menu {
 	}
 }
 
+/*SVG support start*/
+function add_svg_support($mimes) {
+	$mimes['svg'] = 'image/svg+xml';
+	return $mimes;
+}
+add_filter('upload_mimes', 'add_svg_support');
+
+function sanitize_svg($file) {
+	if ($file['type'] === 'image/svg+xml') {
+		$svg = file_get_contents($file['tmp_name']);
+		$svg = preg_replace('/<script[^>]*>.*?<\/script>/i', '', $svg); // Удаляем любые <script> теги
+		file_put_contents($file['tmp_name'], $svg);
+	}
+	return $file;
+}
+add_filter('wp_handle_upload_prefilter', 'sanitize_svg');
+
+function display_svg_in_media_library($response, $attachment, $meta) {
+	if ($response['mime'] === 'image/svg+xml') {
+		$response['sizes'] = array();
+		$response['icon'] = wp_get_attachment_url($attachment->ID);
+	}
+	return $response;
+}
+add_filter('wp_prepare_attachment_for_js', 'display_svg_in_media_library', 10, 3);
+
+/*SVG support end*/
+
+/*custom button "add to cart"*/
+function custom_add_to_cart_in_sidebar() {
+	if ( is_shop() || is_product_category() || is_product_tag() ) {
+		global $wp_query;
+
+		// Получить первый товар на текущей странице
+		$products = $wp_query->posts;
+
+		if ( ! empty( $products ) ) {
+			$first_product_id = $products[0]->ID;
+
+			echo '<div class="custom-sidebar-add-to-cart">';
+			echo do_shortcode( '[add_to_cart id="' . esc_attr( $first_product_id ) . '"]' );
+			echo '</div>';
+		}
+	}
+}
