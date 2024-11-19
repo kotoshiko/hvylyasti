@@ -35,3 +35,34 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCount(2);
     });
 });
+
+/*ajax update category without reload*/
+
+jQuery(document).ready(function ($) {
+    $('#filter-form .category-filter').on('change', function () {
+        var selectedCategories = [];
+        $('#filter-form .category-filter:checked').each(function () {
+            selectedCategories.push($(this).data('category-id'));
+        });
+
+        $.ajax({
+            url: hv_theme.ajaxurl,
+            type: 'POST',
+            data: {
+                action: 'filter_products',
+                categories: selectedCategories
+            },
+            beforeSend: function () {
+                $('.products-content').html('<p>Loading...</p>');
+            },
+            success: function (response) {
+                if (response.success) {
+                    $('.products-content').html(response.data);
+                }
+            }
+        });
+    });
+});
+
+
+

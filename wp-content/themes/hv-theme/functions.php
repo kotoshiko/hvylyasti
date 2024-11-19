@@ -44,6 +44,57 @@ function hv_theme_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'hv_theme_scripts' );
 
+/* START ajax filter product*/
+
+function hv_theme_enqueue_scripts() {
+	wp_enqueue_script('shop-filter', get_template_directory_uri() . '/assets/js/shop.js', array('jquery'), '1.0', true);
+	wp_localize_script('shop-filter', 'hv_theme', array('ajaxurl' => admin_url('admin-ajax.php')));
+}
+add_action('wp_enqueue_scripts', 'hv_theme_enqueue_scripts');
+
+
+function filter_products() {
+	ob_start();
+
+	$categories = isset($_POST['categories']) ? $_POST['categories'] : array();
+
+	$args = array(
+		'post_type'      => 'product',
+		'posts_per_page' => -1,
+		'tax_query'      => array(
+			array(
+				'taxonomy' => 'product_cat',
+				'field'    => 'id',
+				'terms'    => $categories,
+				'operator' => 'IN',
+			),
+		),
+	);
+
+	$query = new WP_Query($args);
+
+	if ($query->have_posts()) {
+		woocommerce_product_loop_start();
+		while ($query->have_posts()) {
+			$query->the_post();
+			wc_get_template_part('content', 'product');
+		}
+		woocommerce_product_loop_end();
+	} else {
+		echo '<p>' . __('No products found', 'woocommerce') . '</p>';
+	}
+
+	wp_reset_postdata();
+	wp_send_json_success(ob_get_clean());
+}
+
+add_action('wp_ajax_filter_products', 'filter_products');
+add_action('wp_ajax_nopriv_filter_products', 'filter_products');
+
+
+
+/*END ajax filter product*/
+
 
 defined( 'ABSPATH' ) || exit(); // Exit if accessed directly.
 if ( ! class_exists( 'Hv_Plus_Minus' ) ) {

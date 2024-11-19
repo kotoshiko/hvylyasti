@@ -1,33 +1,31 @@
 <?php
 ?>
-<aside><form class="filter-form">
+<aside>
+	<form id="filter-form" class="filter-form">
 		<div class="filter">
 			<div class="filter-header active">
 				<span class="filter-title">Фільтр</span>
 			</div>
 			<div class="filter-content">
 				<div class="filter-content-box">
-			  <?php
-			  $product_categories = get_terms( array(
-				  'taxonomy'   => 'product_cat',
-				  'hide_empty' => true,
-				  'parent'     => 0, // main category
-			  ) );
+			<?php
+			$product_categories = get_terms(array(
+				'taxonomy'   => 'product_cat',
+				'hide_empty' => true,
+				'parent'     => 0,
+			));
 
-			  // get current category from url
-			  $current_category = get_queried_object();
-			  $current_category_id = isset( $current_category->term_id ) ? $current_category->term_id : 0;
+			$current_selected_categories = isset($_POST['categories']) ? $_POST['categories'] : array();
 
-			  foreach ( $product_categories as $category ) :
-				  $category_link = get_term_link( $category );
-				  $checked = $current_category_id === $category->term_id ? 'checked' : '';
-				  ?>
-								<label class="control">
-									<input type="checkbox" onclick="window.location.href='<?php echo esc_url( $category_link ); ?>'" <?php echo $checked; ?> />
-									<span class="control-checkmark"></span>
-					<?php echo esc_html( $category->name ); ?>
-								</label>
-			  <?php endforeach; ?>
+			foreach ($product_categories as $category) :
+				$checked = in_array($category->term_id, $current_selected_categories) ? 'checked' : '';
+				?>
+							<label class="control">
+								<input type="checkbox" class="category-filter" data-category-id="<?php echo esc_attr($category->term_id); ?>" <?php echo $checked; ?> />
+								<span class="control-checkmark"></span>
+				  <?php echo esc_html($category->name); ?>
+							</label>
+			<?php endforeach; ?>
 					</div>
 		  <?php
 		  $current_category = get_queried_object();
@@ -86,6 +84,8 @@
 				</div>
 				<div class="filter-content-box">
 			<?php
+	  $current_category = get_queried_object();
+	  $current_category_id = isset( $current_category->term_id ) ? $current_category->term_id : 0;
 			if ( $current_category_id ) {
 				$subcategories = get_terms( array(
 					'taxonomy'   => 'product_cat',
