@@ -9,24 +9,31 @@
 			<div class="filter-content">
 				<div class="filter-content-box">
 			<?php
+			$current_selected_categories = isset($_POST['categories']) ? $_POST['categories'] : array();
+			if (empty($current_selected_categories)) {
+				$default_category_slug = 'grinky'; // default category
+				$default_category = get_term_by('slug', $default_category_slug, 'product_cat');
+				if ($default_category) {
+					$current_selected_categories[] = $default_category->term_id;
+				}
+			}
+
 			$product_categories = get_terms(array(
 				'taxonomy'   => 'product_cat',
 				'hide_empty' => true,
-				'parent'     => 0,
+				'parent'     => 0, // main categories
 			));
-
-			$current_selected_categories = isset($_POST['categories']) ? $_POST['categories'] : array();
 
 			foreach ($product_categories as $category) :
 				$checked = in_array($category->term_id, $current_selected_categories) ? 'checked' : '';
 				?>
 							<label class="control">
-								<input type="checkbox" class="category-filter" data-category-id="<?php echo esc_attr($category->term_id); ?>" <?php echo $checked; ?> />
+								<input type="radio" name="category-filter" class="category-filter" data-category-id="<?php echo esc_attr($category->term_id); ?>" <?php echo $checked; ?> />
 								<span class="control-checkmark"></span>
 				  <?php echo esc_html($category->name); ?>
 							</label>
 			<?php endforeach; ?>
-					</div>
+				</div>
 		  <?php
 		  $current_category = get_queried_object();
 		  $current_category_slug = isset( $current_category->slug ) ? $current_category->slug : '';
