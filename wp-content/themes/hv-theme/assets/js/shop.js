@@ -35,3 +35,50 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCount(2);
     });
 });
+
+/*ajax update category without reload*/
+
+document.querySelectorAll('.category-filter').forEach(input => {
+    input.addEventListener('change', () => {
+        const selectedCategory = document.querySelector('.category-filter:checked')?.dataset.categoryId || null;
+
+        if (selectedCategory) {
+            fetch(hv_theme.ajax_url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    action: 'filter_products',
+                    categories: selectedCategory, // Передаем просто ID
+                }),
+            })
+                .then(response => response.text())
+                .then(html => {
+                    const productsContainer = document.querySelector('.products-content');
+                    if (productsContainer) {
+                        productsContainer.innerHTML = html;
+                    } else {
+                        console.error('Products container not found.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    });
+});
+
+// Устанавливаем категорию по умолчанию на странице загрузки
+document.addEventListener('DOMContentLoaded', () => {
+    const defaultCategory = document.querySelector('input[data-category-id="29"]');
+    if (defaultCategory) {
+        defaultCategory.checked = true;
+        const event = new Event('change');
+        defaultCategory.dispatchEvent(event);
+    }
+});
+
+
+
+
+
+

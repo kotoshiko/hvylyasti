@@ -44,6 +44,66 @@ function hv_theme_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'hv_theme_scripts' );
 
+/* START ajax filter product*/
+
+add_action('wp_enqueue_scripts', function() {
+	wp_enqueue_script('shop-js', get_template_directory_uri() . '/assets/js/shop.js', ['jquery'], '1.0', true);
+
+	// Передача AJAX URL
+	wp_localize_script('shop-js', 'hv_theme', [
+		'ajax_url' => admin_url('admin-ajax.php'),
+	]);
+});
+
+
+
+add_action('wp_ajax_filter_products', 'filter_products_callback');
+add_action('wp_ajax_nopriv_filter_products', 'filter_products_callback');
+
+function filter_products_callback() {
+	// Получаем выбранную категорию из POST
+	$selected_category = isset($_POST['categories']) ? intval($_POST['categories']) : 0; // Теперь это просто ID, а не массив
+
+	if (!$selected_category) {
+		echo '<p>No category selected.</p>';
+		wp_die();
+	}
+
+	// Формируем запрос
+	$args = [
+		'post_type' => 'product',
+		'posts_per_page' => -1,
+		'tax_query' => [
+			[
+				'taxonomy' => 'product_cat',
+				'field'    => 'term_id',
+				'terms'    => $selected_category, // Используем значение переменной
+			],
+		],
+	];
+
+	// Логируем аргументы запроса
+	error_log(print_r($args, true));
+
+	$query = new WP_Query($args);
+
+	// Проверяем, есть ли товары
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+			wc_get_template_part('content', 'product');
+		}
+	} else {
+		error_log('No products found for category ID: ' . $selected_category);
+		echo '<p>No products found for this category.</p>';
+	}
+
+	wp_die();
+}
+
+
+/*END ajax filter product*/
+
 
 defined( 'ABSPATH' ) || exit(); // Exit if accessed directly.
 if ( ! class_exists( 'Hv_Plus_Minus' ) ) {
