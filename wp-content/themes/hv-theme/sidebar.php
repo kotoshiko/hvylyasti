@@ -9,23 +9,21 @@
 			<div class="filter-content">
 				<div class="filter-content-box">
 			<?php
-			$current_selected_categories = isset($_POST['categories']) ? $_POST['categories'] : array();
-			if (empty($current_selected_categories)) {
-				$default_category_slug = 'grinky'; // default category
+			$current_selected_category = isset($_POST['categories']) ? intval($_POST['categories']) : 0;
+			if (!$current_selected_category) {
+				$default_category_slug = 'grinky'; // default category slug
 				$default_category = get_term_by('slug', $default_category_slug, 'product_cat');
-				if ($default_category) {
-					$current_selected_categories[] = $default_category->term_id;
-				}
+				$current_selected_category = $default_category ? $default_category->term_id : 0;
 			}
-
+			//get all category
 			$product_categories = get_terms(array(
 				'taxonomy'   => 'product_cat',
 				'hide_empty' => true,
-				'parent'     => 0, // main categories
+				'parent'     => 0,
 			));
 
 			foreach ($product_categories as $category) :
-				$checked = in_array($category->term_id, $current_selected_categories) ? 'checked' : '';
+				$checked = ($category->term_id === $current_selected_category) ? 'checked' : '';
 				?>
 							<label class="control">
 								<input type="radio" name="category-filter" class="category-filter" data-category-id="<?php echo esc_attr($category->term_id); ?>" <?php echo $checked; ?> />
@@ -34,15 +32,8 @@
 							</label>
 			<?php endforeach; ?>
 				</div>
-		  <?php
-		  $current_category = get_queried_object();
-		  $current_category_slug = isset( $current_category->slug ) ? $current_category->slug : '';
-
-		  $show_mix_section = ($current_category_slug === 'grinky' || $current_category_slug === 'vergosy');
-		  $show_all_sections = ($current_category_slug === 'grinky');
-		  ?>
-
-				<div class="filter-content-box" style="<?php echo $show_all_sections ? '' : 'display: none;'; ?>">
+				<?php $show_all_sections = ($current_selected_category === 29); ?>
+				<div class="filter-content-box" data-filter-type="package" style="<?php echo $show_all_sections ? '' : 'display: none;'; ?>">
 					<label class="control">
 						<input type="radio" name="filter-group" />
 						<span class="control-radio"></span>
@@ -55,7 +46,7 @@
 					</label>
 				</div>
 
-				<div class="filter-content-box" style="<?php echo $show_mix_section ? '' : 'display: none;'; ?>">
+				<div class="filter-content-box" >
 					<label class="control switch">
 						<input type="checkbox">
 						<span class="toggle round"></span>
@@ -91,8 +82,7 @@
 				</div>
 				<div class="filter-content-box">
 			<?php
-	  $current_category = get_queried_object();
-	  $current_category_id = isset( $current_category->term_id ) ? $current_category->term_id : 0;
+	  $current_category_id = 29;
 			if ( $current_category_id ) {
 				$subcategories = get_terms( array(
 					'taxonomy'   => 'product_cat',
