@@ -61,7 +61,7 @@ add_action('wp_ajax_filter_products', 'filter_products_callback');
 add_action('wp_ajax_nopriv_filter_products', 'filter_products_callback');
 
 function filter_products_callback() {
-	// Получаем ID выбранной категории
+	// get choice category
 	$selected_category = isset($_POST['categories']) ? intval($_POST['categories']) : 0;
 
 	if (!$selected_category) {
@@ -69,7 +69,7 @@ function filter_products_callback() {
 		wp_die();
 	}
 
-	// Формируем WP_Query
+	// get WP_Query
 	$args = [
 		'post_type' => 'product',
 		'posts_per_page' => -1,
@@ -93,7 +93,7 @@ function filter_products_callback() {
 		$products_html = ob_get_clean();
 
 		ob_start();
-		get_template_part('sidebar'); // Убедитесь, что файл sidebar.php существует
+		get_template_part('sidebar');//add sidebar template
 		$sidebar_html = ob_get_clean();
 
 		wp_send_json_success([
