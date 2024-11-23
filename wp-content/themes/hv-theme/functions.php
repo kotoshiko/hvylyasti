@@ -61,45 +61,53 @@ add_action('wp_ajax_filter_products', 'filter_products_callback');
 add_action('wp_ajax_nopriv_filter_products', 'filter_products_callback');
 
 function filter_products_callback() {
-	// Получаем выбранную категорию из POST
-	$selected_category = isset($_POST['categories']) ? intval($_POST['categories']) : 0; // Теперь это просто ID, а не массив
+	// Получаем ID выбранной категории
+	$selected_category = isset($_POST['categories']) ? intval($_POST['categories']) : 0;
 
 	if (!$selected_category) {
-		echo '<p>No category selected.</p>';
+		wp_send_json_error(['message' => 'No category selected.']);
 		wp_die();
 	}
 
-	// Формируем запрос
+	// Формируем WP_Query
 	$args = [
 		'post_type' => 'product',
 		'posts_per_page' => -1,
 		'tax_query' => [
 			[
 				'taxonomy' => 'product_cat',
-				'field'    => 'term_id',
-				'terms'    => $selected_category, // Используем значение переменной
+				'field' => 'term_id',
+				'terms' => $selected_category,
 			],
 		],
 	];
 
-	// Логируем аргументы запроса
-	error_log(print_r($args, true));
-
 	$query = new WP_Query($args);
 
-	// Проверяем, есть ли товары
 	if ($query->have_posts()) {
+		ob_start();
 		while ($query->have_posts()) {
 			$query->the_post();
 			wc_get_template_part('content', 'product');
 		}
+		$products_html = ob_get_clean();
+
+		ob_start();
+		get_template_part('sidebar'); // Убедитесь, что файл sidebar.php существует
+		$sidebar_html = ob_get_clean();
+
+		wp_send_json_success([
+			'products_html' => $products_html,
+			'sidebar_html'  => $sidebar_html,
+		]);
 	} else {
-		error_log('No products found for category ID: ' . $selected_category);
-		echo '<p>No products found for this category.</p>';
+		wp_send_json_error(['message' => 'No products found.']);
 	}
 
 	wp_die();
 }
+
+
 
 
 /*END ajax filter product*/
