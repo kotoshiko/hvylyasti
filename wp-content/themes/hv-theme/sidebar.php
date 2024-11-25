@@ -35,31 +35,31 @@
 				<?php $show_all_sections = ($current_selected_category === 29); ?>
 				<div class="filter-content-box" data-filter-type="package" style="<?php echo $show_all_sections ? '' : 'display: none;'; ?>">
 					<label class="control">
-						<input type="radio" name="filter-group" />
+						<input type="radio" name="filter-group" value="packaged" />
 						<span class="control-radio"></span>
 						Фасовані
 					</label>
 					<label class="control">
-						<input type="radio" name="filter-group" />
+						<input type="radio" name="filter-group" value="weight" />
 						<span class="control-radio"></span>
 						Вагові
 					</label>
 				</div>
 
-				<div class="filter-content-box" >
+				<div class="filter-content-box" data-filter-type="mix" style="display: none;">
 					<label class="control switch">
 						<input type="checkbox">
 						<span class="toggle round"></span>
 						MIX смаків
 					</label>
 				</div>
-				<div class="filter-content-count">
+				<div class="filter-content-count" style="display: none;">
 					<div class="filter-content-label">Кількість смаків*</div>
 					<div class="product-controls-wrapper">
 						<button class="button-control minus">
 							<img src="/wp-content/themes/hv-theme/assets/images/icons/minus.svg" alt="">
 						</button>
-						<span class="product-number">12</span>
+						<span class="product-number">1</span>
 						<button class="button-control plus">
 							<img src="/wp-content/themes/hv-theme/assets/images/icons/plus.svg" alt="">
 						</button>
@@ -73,7 +73,7 @@
 			</div>
 			<div class="filter-content tastes">
 				<div class="filter-content-label">
-			<?php if ( $current_category_slug === 'grinky' ) {
+			<?php if ( $current_selected_category === 29 ) {
 					 _e('Смаки грінок*', 'hv-theme');
 					 } else {
 		  _e( 'Смаки вергосів*', 'hv-theme' );
@@ -82,7 +82,7 @@
 				</div>
 				<div class="filter-content-box">
 			<?php
-	  $current_category_id = 29;
+	  $current_category_id = $current_selected_category;
 			if ( $current_category_id ) {
 				$subcategories = get_terms( array(
 					'taxonomy'   => 'product_cat',

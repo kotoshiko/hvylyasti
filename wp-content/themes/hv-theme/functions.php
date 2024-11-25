@@ -400,3 +400,22 @@ add_filter( 'woocommerce_get_cart_url', 'bbloomer_redirect_empty_cart_checkout_t
 function bbloomer_redirect_empty_cart_checkout_to_shop() {
 	return ( isset( WC()->cart ) && ! WC()->cart->is_empty() ) ? wc_get_checkout_url() : wc_get_page_permalink( 'shop' );
 }
+
+/**show default category on shop page**/
+add_action('pre_get_posts', 'show_products_from_specific_category');
+
+function show_products_from_specific_category($query) {
+	if (!is_admin() && $query->is_main_query() && is_shop()) {
+		$category_slug = 'grinky';
+
+		$tax_query = (array) $query->get('tax_query');
+		$tax_query[] = array(
+			'taxonomy' => 'product_cat',
+			'field'    => 'slug',
+			'terms'    => $category_slug,
+			'operator' => 'IN',
+		);
+		$query->set('tax_query', $tax_query);
+	}
+}
+

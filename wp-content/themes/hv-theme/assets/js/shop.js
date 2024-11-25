@@ -32,18 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     sidebarContainer.innerHTML = data.data.sidebar_html;
                     initializeSidebarEvents();
                 }
-
-                // Обновляем видимость фильтра "Фасовані/Вагові"
-                const packageFilter = document.querySelector('.filter-content-box[data-filter-type="package"]');
-                if (packageFilter) {
-                    packageFilter.style.display = (selectedCategory === "29") ? '' : 'none';
-                }
+                handleFilters(selectedCategory);
             })
             .catch(error => console.error('Error:', error));
     }
 
     // Загрузка товаров по умолчанию
     handleCategoryChange(defaultCategory);
+    handleFilters(defaultCategory);
 
     // Привязка событий к фильтрам в сайдбаре
     function initializeSidebarEvents() {
@@ -53,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const selectedCategory = document.querySelector('.category-filter:checked')?.dataset.categoryId || null;
                     if (selectedCategory) {
                         handleCategoryChange(selectedCategory);
+                        handleFilters(selectedCategory);
                     }
                 });
                 input.dataset.eventBound = true;
@@ -62,7 +59,108 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initializeSidebarEvents();
 });
+//show mix filter part
+function handleFilters(selectedCategory) {
+    const packageFilterBox = document.querySelector('[data-filter-type="package"]');
+    const mixFilterBox = document.querySelector('[data-filter-type="mix"]');
+    const flavorCountBox = document.querySelector('.filter-content-count');
+    const productNumber = flavorCountBox?.querySelector('.product-number');
 
+    // видимость блоков в зависимости от категории
+    if (selectedCategory === "29") { // категория grinky
+        if (packageFilterBox) packageFilterBox.style.display = '';
+        const selectedPackageValue = document.querySelector('[data-filter-type="package"] input:checked')?.value;
+
+        if (selectedPackageValue === 'packaged') {
+            if (mixFilterBox) mixFilterBox.style.display = '';
+            if (flavorCountBox) {
+                flavorCountBox.style.display = '';
+                const mixSwitch = mixFilterBox.querySelector('input[type="checkbox"]');
+                if (mixSwitch?.checked) {
+                    if (productNumber) productNumber.textContent = '14';
+                } else {
+                    if (productNumber) productNumber.textContent = '1';
+                }
+            }
+        } else if (selectedPackageValue === 'weight') {
+            if (mixFilterBox) mixFilterBox.style.display = 'none';
+            if (flavorCountBox) {
+                flavorCountBox.style.display = '';
+                if (productNumber) productNumber.textContent = '14';
+            }
+        } else {
+            if (mixFilterBox) mixFilterBox.style.display = 'none';
+            if (flavorCountBox) flavorCountBox.style.display = 'none';
+        }
+    } else if (selectedCategory === "30") { // категория vergosy
+        if (packageFilterBox) packageFilterBox.style.display = 'none';
+        if (mixFilterBox) mixFilterBox.style.display = '';
+        if (flavorCountBox) {
+            flavorCountBox.style.display = '';
+            const mixSwitch = mixFilterBox.querySelector('input[type="checkbox"]');
+            if (mixSwitch?.checked) {
+                if (productNumber) productNumber.textContent = '14';
+            } else {
+                if (productNumber) productNumber.textContent = '1';
+            }
+        }
+    } else { //другая категория или неактивные
+        if (packageFilterBox) packageFilterBox.style.display = 'none';
+        if (mixFilterBox) mixFilterBox.style.display = 'none';
+        if (flavorCountBox) flavorCountBox.style.display = 'none';
+    }
+
+    // обработчик изменений для Фасовані/Вагові
+    if (packageFilterBox) {
+        packageFilterBox.querySelectorAll('input').forEach(input => {
+            input.addEventListener('change', () => {
+                const selectedValue = document.querySelector('[data-filter-type="package"] input:checked')?.value;
+
+                if (selectedValue === 'packaged') {
+                    if (mixFilterBox) mixFilterBox.style.display = '';
+                    if (flavorCountBox) {
+                        flavorCountBox.style.display = '';
+                        const mixSwitch = mixFilterBox.querySelector('input[type="checkbox"]');
+                        if (mixSwitch?.checked) {
+                            if (productNumber) productNumber.textContent = '14';
+                        } else {
+                            if (productNumber) productNumber.textContent = '1';
+                        }
+                    }
+                } else if (selectedValue === 'weight') {
+                    if (mixFilterBox) mixFilterBox.style.display = 'none';
+                    if (flavorCountBox) {
+                        flavorCountBox.style.display = '';
+                        if (productNumber) productNumber.textContent = '14';
+                    }
+                }
+            });
+        });
+    }
+
+    //обработчик для переключателя в блоке MIX
+    if (mixFilterBox) {
+        const mixSwitch = mixFilterBox.querySelector('input[type="checkbox"]');
+        if (mixSwitch) {
+            mixSwitch.addEventListener('change', () => {
+                if (mixSwitch.checked) {
+                    if (productNumber) productNumber.textContent = '14';
+                } else {
+                    if (productNumber) productNumber.textContent = '1';
+                }
+            });
+        }
+    }
+}
+
+
+
+
+// вызов функции при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+    const defaultCategory = document.querySelector('.category-filter:checked')?.dataset.categoryId || null;
+    handleFilters(defaultCategory);
+});
 
 
 
