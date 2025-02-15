@@ -56,11 +56,11 @@
 				<div class="filter-content-count" style="display: none;">
 					<div class="filter-content-label">Кількість смаків*</div>
 					<div class="product-controls-wrapper">
-						<button class="button-control minus">
+						<button type="button" class="button-control minus">
 							<img src="/wp-content/themes/hv-theme/assets/images/icons/minus.svg" alt="">
 						</button>
 						<span class="product-number">1</span>
-						<button class="button-control plus">
+						<button type="button" class="button-control plus">
 							<img src="/wp-content/themes/hv-theme/assets/images/icons/plus.svg" alt="">
 						</button>
 					</div>
@@ -80,7 +80,7 @@
 	  }
 				?>
 				</div>
-				<div class="filter-content-box">
+				<div class="filter-content-box sub-categories">
 			<?php
 	  $current_category_id = $current_selected_category;
 			if ( $current_category_id ) {
