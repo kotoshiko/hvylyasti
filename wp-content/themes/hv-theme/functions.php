@@ -38,9 +38,9 @@ function hv_theme_scripts() {
 	wp_enqueue_script( 'main-script', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0', true );
 	wp_enqueue_script( 'burger-button-script', get_template_directory_uri() . '/assets/js/burger-button.js', array(), '1.0', true );
 	wp_enqueue_script( 'trends-section-tabs-script', get_template_directory_uri() . '/assets/js/trends-section-tabs.js', array(), '1.0', true );
-	if (is_shop()){
-		wp_enqueue_script( 'hv-shop', get_template_directory_uri() . '/assets/js/shop.js', array(), '1.0', true );
-	}
+//	if (is_shop()){
+//		wp_enqueue_script( 'hv-shop', get_template_directory_uri() . '/assets/js/shop.js', array(), '1.0', true );
+//	}
 }
 add_action( 'wp_enqueue_scripts', 'hv_theme_scripts' );
 
@@ -348,7 +348,7 @@ function custom_add_to_cart_in_sidebar() {
 
 
 add_action( 'woocommerce_before_main_content', function() {
-	if ( is_shop() || is_product_category() ) {
+
 		// Убираем название
 		remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );
 
@@ -357,10 +357,10 @@ add_action( 'woocommerce_before_main_content', function() {
 
 		// Убираем кнопку "Добавить в корзину"
 		remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
-	}
+
 } );
 
-add_filter( 'woocommerce_add_cart_item_data', 'add_category_data_to_cart_item', 10, 3 );
+add_filter( 'woocommerce_add_cart_item_data', 'add_category_data_to_cart_item', 1, 3 );
 
 function add_category_data_to_cart_item( $cart_item_data, $product_id, $variation_id ) {
 	// Получить объект товара
@@ -400,3 +400,22 @@ add_filter( 'woocommerce_get_cart_url', 'bbloomer_redirect_empty_cart_checkout_t
 function bbloomer_redirect_empty_cart_checkout_to_shop() {
 	return ( isset( WC()->cart ) && ! WC()->cart->is_empty() ) ? wc_get_checkout_url() : wc_get_page_permalink( 'shop' );
 }
+
+/**show default category on shop page**/
+add_action('pre_get_posts', 'show_products_from_specific_category');
+
+function show_products_from_specific_category($query) {
+	if (!is_admin() && $query->is_main_query() && is_shop()) {
+		$category_slug = 'grinky';
+
+		$tax_query = (array) $query->get('tax_query');
+		$tax_query[] = array(
+			'taxonomy' => 'product_cat',
+			'field'    => 'slug',
+			'terms'    => $category_slug,
+			'operator' => 'IN',
+		);
+		$query->set('tax_query', $tax_query);
+	}
+}
+
